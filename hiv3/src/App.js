@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import Navbar from './components/Navbar.js';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+//import Navbar from './components/Navbar.js';
+//import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './pages/Home.js';
 /*import Profile from './pages/Profile.js';
 import ManageCamera from './pages/ManageCamera.js';'
@@ -17,12 +17,13 @@ function App() {
 
 
   return (
-    <Router>
-    <Navbar />
+    <p1> hi</p1>
+   /* <Router>
+
     <Routes>
         <Route exact path='/' element={<Home />} />
     </Routes>
-    </Router>
+    </Router>*/
   );
 }
 
