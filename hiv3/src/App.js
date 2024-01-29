@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import Navbar from './components/Navbar.js';
+//import Navbar from './components/Navbar.js';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './pages/Home.js';
 /*import Profile from './pages/Profile.js';
@@ -18,7 +18,6 @@ function App() {
 
   return (
     <Router>
-    <Navbar />
     <Routes>
         <Route exact path='/' element={<Home />} />
     </Routes>
