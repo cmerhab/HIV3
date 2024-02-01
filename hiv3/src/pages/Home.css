@@ -1,1 +1,9 @@
-
+.center{
+    display:block;
+    margin-top: 5rem;
+    margin-bottom: 2.5rem;
+    margin-left: auto;
+    margin-right:auto;
+    width: 50%; 
+    height: 50%;
+}
