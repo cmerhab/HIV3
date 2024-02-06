@@ -3,6 +3,7 @@ import homebutton from ".././media/homebutton.png";
 import logo from ".././media/Hive Logo.png";
 import pfp from ".././media/user-pfp.png";
 import ".././pages/Home.css";
+import Topbar from "../components/topbar.js"
 //import {useGoogleLogin} from "@react-oauth/google";
 
 const Home = () => {
@@ -14,11 +15,7 @@ const Home = () => {
     });*/
     return (
         <div class="homepage">
-            <div class = "topbar-container">
-                <img src={homebutton} className="homebutton" alt="homebutton" />
-                <img src={logo} className="center" alt="Hive Logo" />
-                <img src={pfp} className="right" alt ="pfp" />
-            </div>
+            <Topbar />
             <div class="bar"></div>
             <div class="left-box">
                 <div class="camera-info">
