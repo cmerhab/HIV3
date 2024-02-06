@@ -2,7 +2,7 @@ import React from "react";
 import Home from ".././media/homebutton.png"
 import Logo from ".././media/Hive Logo.png"
 import Pfp from ".././media/user-pfp.png"
-
+import ".././styles/Topbar.css";
 const Topbar = () => {
     return (
     <div class = "topbar-container">

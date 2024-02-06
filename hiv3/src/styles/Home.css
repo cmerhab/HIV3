@@ -1,14 +1,4 @@
-.topbar-container{
-    display:flex;
-    flex-direction: row;
-    width:fit-content;
-    height:auto;
-}
-.topbar-container img {
-    width:100px;
-    height:auto;
-    justify-content: space-between;
-}
+
 .center{
     align-items: center;
 }
