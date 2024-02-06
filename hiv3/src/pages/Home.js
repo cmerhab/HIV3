@@ -2,7 +2,7 @@ import React from "react";
 import homebutton from ".././media/homebutton.png";
 import logo from ".././media/Hive Logo.png";
 import pfp from ".././media/user-pfp.png";
-import ".././pages/Home.css";
+import ".././styles/Home.css";
 import Topbar from "../components/topbar.js"
 //import {useGoogleLogin} from "@react-oauth/google";
 
