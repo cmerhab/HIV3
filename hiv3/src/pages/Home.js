@@ -18,10 +18,22 @@ const Home = () => {
             <Topbar />
             <div class="bar"></div>
             <div class="left-box">
-                <div class="camera-info">
-                    <p1>Camera Name:</p1>
-                    <p1>Local Time:</p1>
-                    <p1>Local Temperature:</p1>
+            <div class="camera-info">
+                    <p1>Camera Name: </p1>
+                    <p1>Local Time: </p1>
+                    <p1>Local Temperature: </p1>
+                </div>
+                <div class ="Manage_Camera">
+                    <p1>Manage Cameras</p1>
+                </div>
+                <div class ="Modify_Perms">
+                    <p1>Modify Permissions</p1>
+                </div>
+                <div class ="Live_View">
+                    <p1>Live View</p1>
+                </div>
+                <div class ="View_Data">
+                    <p1>View Data</p1>
                 </div>
             </div>
         </div>

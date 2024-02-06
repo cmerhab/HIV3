@@ -24,3 +24,40 @@
     border-right:black;
     border-top:black;
 }
+
+.Manage_Camera{
+    height:40px;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:10px;
+}
+.Modify_Perms{
+    height:40px;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:10px;
+}
+.Live_View{
+    height:40px;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:10px;
+}
+.View_Data{
+    height:40px;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:10px;
+}
