@@ -3,6 +3,8 @@ import ".././styles/Home.css";
 import Topbar from "../components/topbar.js"
 import Clocktime from "../components/clock.js"
 import Livefeed from "../components/livefeed.js"
+import Pastdata from "../components/pastdata.js"
+import CurrentCount from "../components/currentcount.js"
 //import {useGoogleLogin} from "@react-oauth/google";
 
 const Home = () => {
@@ -16,6 +18,8 @@ const Home = () => {
         <div class="homepage">
             <Topbar />
             <Livefeed/>
+            <CurrentCount />
+            <Pastdata />
             <div class="left-box">
                 <div class="camera-info">
                     <p1>Camera Name: </p1> 

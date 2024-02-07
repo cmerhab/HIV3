@@ -1,0 +1,15 @@
+.currentgrouped {
+    position: absolute;
+    left: 30vh;
+    bottom: 15vh;
+}
+
+.currentbox{
+    height: 5vh;
+    width: 30vh;
+    border: 2px solid #000000;
+}
+
+.currentp1{
+    font-size: 25pt;
+}
