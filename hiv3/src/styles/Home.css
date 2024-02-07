@@ -13,7 +13,7 @@
     display:block;
     background-color: #CC8F00;
     height:75vh;
-    width: 20vh;
+    width: 10vw;
 }
 
 .left-box .camera-info{
@@ -21,6 +21,7 @@
     height:auto;    /*Increase or decreases dependent on whats inside it*/
     border-style: solid;
     border-left: black;
+    font-size: 1.75vh;
     border-right:black;
     border-top:black;
 }
@@ -31,33 +32,37 @@
     border-left: black;
     border-right:black;
     border-top:black;
+    font-size: 1.75vh;
     text-align: center;
-    padding-top:10px;
+    padding-top:1vh;
 }
 .Modify_Perms{
-    height:40px;
+    height:4vh;
     border-style: solid;
+    font-size: 1.75vh;
     border-left: black;
     border-right:black;
     border-top:black;
     text-align: center;
-    padding-top:10px;
+    padding-top:1vh;
 }
 .Live_View{
-    height:40px;
+    height:4vh;
     border-style: solid;
+    font-size: 1.75vh;
     border-left: black;
     border-right:black;
     border-top:black;
     text-align: center;
-    padding-top:10px;
+    padding-top:1vh;
 }
 .View_Data{
-    height:40px;
+    height:4vh;
     border-style: solid;
+    font-size: 1.75vh;
     border-left: black;
     border-right:black;
     border-top:black;
     text-align: center;
-    padding-top:10px;
+    padding-top:1vh;
 }
