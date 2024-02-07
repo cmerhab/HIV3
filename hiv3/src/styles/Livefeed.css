@@ -1,0 +1,16 @@
+.grouped {
+    position: absolute;
+    left: 30vh;
+    top: 16vh;
+}
+
+.title {
+    position: relative;
+    top: 2vh;
+}
+
+.box{
+    height: 50vh;
+    width: 50vh;
+    border: 5px solid #000000;
+}
