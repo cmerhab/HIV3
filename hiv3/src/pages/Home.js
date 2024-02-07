@@ -1,7 +1,4 @@
 import React from "react"; 
-import homebutton from ".././media/homebutton.png";
-import logo from ".././media/Hive Logo.png";
-import pfp from ".././media/user-pfp.png";
 import ".././styles/Home.css";
 import Topbar from "../components/topbar.js"
 import Clocktime from "../components/clock.js"
@@ -17,7 +14,6 @@ const Home = () => {
     return (
         <div class="homepage">
             <Topbar />
-            <div class="bar"></div>
             <div class="left-box">
                 <div class="camera-info">
                     <p1>Camera Name: </p1> 
