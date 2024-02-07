@@ -26,14 +26,21 @@
     border-left: black;
     border-right:black;
     border-top:black;
-    font-size: 1.75vh;
     text-align: center;
     padding-top:1vh;
+}
+
+.Sidebar_Button {
+    font-size: 1.75vh;
+    background: transparent;
+    border: none; 
+    height: 4vh;
+    width: 16vh;
+
 }
 .Modify_Perms{
     height:4vh;
     border-style: solid;
-    font-size: 1.75vh;
     border-left: black;
     border-right:black;
     border-top:black;
@@ -43,7 +50,6 @@
 .Live_View{
     height:4vh;
     border-style: solid;
-    font-size: 1.75vh;
     border-left: black;
     border-right:black;
     border-top:black;
@@ -53,7 +59,6 @@
 .View_Data{
     height:4vh;
     border-style: solid;
-    font-size: 1.75vh;
     border-left: black;
     border-right:black;
     border-top:black;

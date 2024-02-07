@@ -27,16 +27,24 @@ const Home = () => {
                     <p1>Local Temperature: </p1>
                 </div>
                 <div class ="Manage_Camera">
+                    <button class="Sidebar_Button">
                     <p1>Manage Cameras</p1>
+                    </button>
                 </div>
                 <div class ="Modify_Perms">
-                    <p1>Modify Permissions</p1>
+                    <button class="Sidebar_Button">
+                        <p1>Modify Permissions</p1>
+                    </button>
                 </div>
                 <div class ="Live_View">
-                    <p1>Live View</p1>
+                    <button class="Sidebar_Button">
+                        <p1>Live View</p1>
+                    </button>
                 </div>
                 <div class ="View_Data">
-                    <p1>View Data</p1>
+                    <button class="Sidebar_Button">
+                        <p1>View Data</p1>
+                    </button>
                 </div>
     
             </div>
