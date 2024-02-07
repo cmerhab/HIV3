@@ -17,3 +17,7 @@
     height:2vh;
 
 }
+.HomeButtonclick {
+    background: transparent;
+    border: none; 
+}
