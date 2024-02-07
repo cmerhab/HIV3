@@ -1,8 +1,10 @@
 import React from "react"; 
-import homebutton from ".././media/homebutton.png";
-import logo from ".././media/Hive Logo.png";
-import pfp from ".././media/user-pfp.png";
-import ".././pages/Home.css";
+import ".././styles/Home.css";
+import Topbar from "../components/topbar.js"
+import Clocktime from "../components/clock.js"
+import Livefeed from "../components/livefeed.js"
+import Pastdata from "../components/pastdata.js"
+import CurrentCount from "../components/currentcount.js"
 //import {useGoogleLogin} from "@react-oauth/google";
 
 const Home = () => {
@@ -14,20 +16,41 @@ const Home = () => {
     });*/
     return (
         <div class="homepage">
-            <div class = "topbar-container">
-                <img src={homebutton} className="homebutton" alt="homebutton" />
-                <img src={logo} className="center" alt="Hive Logo" />
-                <img src={pfp} className="right" alt ="pfp" />
-            </div>
-            <div class="bar"></div>
+            <Topbar />
+            <Livefeed/>
+            <CurrentCount />
+            <Pastdata />
             <div class="left-box">
                 <div class="camera-info">
-                    <p1>Camera Name:</p1>
-                    <p1>Local Time:</p1>
-                    <p1>Local Temperature:</p1>
+                    <p1>Camera Name: </p1> 
+                     <Clocktime />
+                    <p1>Local Temperature: </p1>
                 </div>
+                <div class ="Manage_Camera">
+                    <button class="Sidebar_Button">
+                    <p1>Manage Cameras</p1>
+                    </button>
+                </div>
+                <div class ="Modify_Perms">
+                    <button class="Sidebar_Button">
+                        <p1>Modify Permissions</p1>
+                    </button>
+                </div>
+                <div class ="Live_View">
+                    <button class="Sidebar_Button">
+                        <p1>Live View</p1>
+                    </button>
+                </div>
+                <div class ="View_Data">
+                    <button class="Sidebar_Button">
+                        <p1>View Data</p1>
+                    </button>
+                </div>
+    
             </div>
-        </div>
+   
+
+            </div>
 
 
     );
