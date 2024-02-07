@@ -1,8 +1,9 @@
 .topbar-container{
     display:flex;
     flex-direction: row;
-    width:fit-content;
     height:auto;
+    width: auto;
+    justify-content: space-between;
 }
 .topbar-container img {
     width:10vh;
