@@ -12,8 +12,8 @@ export const ClockTime = () => {
     });
     return(
         <div>
-            <p>Time : {date.toLocaleTimeString()}</p>
-            <p>Date : {date.toLocaleDateString()}</p>
+            <p>Time: {date.toLocaleTimeString()}</p>
+            <p>Date: {date.toLocaleDateString()}</p>
         </div>
     )
 }

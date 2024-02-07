@@ -6,14 +6,14 @@
     background-color: #CC8F00;
     display:flex;
     flex-direction:row;
-    height:20px;
+    height:2vh;
 
 }
 .left-box{
     display:block;
     background-color: #CC8F00;
     height:75vh;
-    width:200px;
+    width: 20vh;
 }
 
 .left-box .camera-info{

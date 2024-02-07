@@ -20,7 +20,7 @@ const Home = () => {
             <div class="bar"></div>
             <div class="left-box">
                 <div class="camera-info">
-                    <p1>Camera Name: </p1>
+                    <p1>Camera Name: </p1> 
                      <Clocktime />
                     <p1>Local Temperature: </p1>
                 </div>
