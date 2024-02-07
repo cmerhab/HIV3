@@ -4,6 +4,7 @@ import logo from ".././media/Hive Logo.png";
 import pfp from ".././media/user-pfp.png";
 import ".././styles/Home.css";
 import Topbar from "../components/topbar.js"
+import Clocktime from "../components/clock.js"
 //import {useGoogleLogin} from "@react-oauth/google";
 
 const Home = () => {
@@ -18,9 +19,9 @@ const Home = () => {
             <Topbar />
             <div class="bar"></div>
             <div class="left-box">
-            <div class="camera-info">
+                <div class="camera-info">
                     <p1>Camera Name: </p1>
-                    <p1>Local Time: </p1>
+                     <Clocktime />
                     <p1>Local Temperature: </p1>
                 </div>
                 <div class ="Manage_Camera">
@@ -36,7 +37,8 @@ const Home = () => {
                     <p1>View Data</p1>
                 </div>
             </div>
-        </div>
+
+            </div>
 
 
     );
