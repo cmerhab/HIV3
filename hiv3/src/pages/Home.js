@@ -5,6 +5,7 @@ import Clocktime from "../components/clock.js"
 import Livefeed from "../components/livefeed.js"
 import Pastdata from "../components/pastdata.js"
 import CurrentCount from "../components/currentcount.js"
+import { Link } from "react-router-dom";
 //import {useGoogleLogin} from "@react-oauth/google";
 
 const Home = () => {
@@ -38,7 +39,7 @@ const Home = () => {
                 </div>
                 <div class ="Live_View">
                     <button class="Sidebar_Button">
-                        <p1>Live View</p1>
+                        <Link to='/LiveView' className="titles">LiveView</Link>
                     </button>
                 </div>
                 <div class ="View_Data">
@@ -50,7 +51,7 @@ const Home = () => {
             </div>
    
 
-            </div>
+        </div>
 
 
     );
