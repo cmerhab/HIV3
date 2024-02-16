@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './pages/Home.js';
 import LiveView from './pages/LiveView.js';
 import ViewData from './pages/ViewData.js';
+import LoginPage from './pages/LoginPage.js';
 import ManageCamera from './pages/ManageCamera.js';
 /*
 import Profile from './pages/Profile.js';
@@ -24,6 +25,7 @@ function App() {
   return (
    <Router>
     <Routes>  
+        <Route exact path = '/' element={<LoginPage /> } />
         <Route exact path='/Home' element={<Home />} />
         <Route exact path='/LiveView' element={<LiveView/>}/>
         <Route exact path='/ViewData' element={<ViewData/>}/>
