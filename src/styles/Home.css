@@ -1,0 +1,68 @@
+
+.center{
+    align-items: center;
+}
+
+.left-box{
+    display:block;
+    background-color: #CC8F00;
+    height:89vh;
+    width: 10vw;
+}
+
+.left-box .camera-info{
+    background-color: silver;
+    height:auto;    /*Increase or decreases dependent on whats inside it*/
+    border-style: solid;
+    border-left: black;
+    font-size: 1.75vh;
+    border-right:black;
+    border-top:black;
+}
+
+.Manage_Camera{
+    height:40px;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:1vh;
+}
+
+.Sidebar_Button {
+    font-size: 1.75vh;
+    background: transparent;
+    border: none; 
+    height: 4vh;
+    width: 16vh;
+
+}
+.Modify_Perms{
+    height:4vh;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:1vh;
+}
+.Live_View{
+    height:4vh;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:1vh;
+}
+.View_Data{
+    height:4vh;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:1vh;
+}
+

@@ -1,0 +1,16 @@
+.viewpoint {
+    position: absolute;
+    left: 30vh;
+    top: 8vh;
+}
+
+.title {
+    position: relative;
+    top: 2vh;
+}
+
+.bord{
+    height: 60vh;
+    width: 120vh;
+    border: 2px solid #000000;
+}

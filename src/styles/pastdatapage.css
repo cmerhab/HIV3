@@ -1,0 +1,30 @@
+.pastgrouped {
+    position: absolute;
+    right: 10vh;
+    top: 25vh;
+}
+
+.pasttitle {
+    position: relative;
+    top: 2vh;
+}
+
+.pastbox{
+    height: 10vh;
+    width: 50vh;
+    border: 2px solid #000000;
+}
+.datatable{
+    position: absolute;
+    left: 30vh;
+    top: 15vh;
+}
+.datatitle {
+    position: relative;
+    top: 2vh;
+}
+.dtable{
+    height: 50vh;
+    width: 75vh;
+    border: 2px solid #000000;
+}
