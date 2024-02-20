@@ -6,15 +6,8 @@ import Livefeed from "../components/livefeed.js"
 import Pastdata from "../components/pastdata.js"
 import CurrentCount from "../components/currentcount.js"
 import { Link } from "react-router-dom";
-//import {useGoogleLogin} from "@react-oauth/google";
 
 const Home = () => {
-/*    const googSignIn=useGoogleLogin({
-        onSuccess:(res)=>{
-            console.log("res",res);
-            alert("Login Successful");
-        },
-    });*/
     return (
         <div class="homepage">
             <Topbar />
