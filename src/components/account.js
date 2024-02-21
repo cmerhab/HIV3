@@ -1,6 +1,8 @@
 import React from "react"; 
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import ".././styles/Account.css"
+import Topbar from "../components/topbar.js"
 
 const Account = () => {
 
@@ -15,12 +17,24 @@ const Account = () => {
     }
 
     return (
+   
         <div>
-            <h1 className='Account'>Account</h1>
-            <div>
-                <p>Welcome, {user?.displayName}</p>
+            <Topbar />
+            <div className='PositionBox'>
+                <div className='OrangeBox'>
+                    <h1 className='Profile'>Profile</h1>
+                    <br />
+                    <br />
+                    <img src={user?.photoURL} className="UserPhoto" />
+                    <br />
+                    <br /> 
+                    <div className='UserDetails'>
+                        <p>Welcome, {user?.displayName}</p> 
+                        <p>Email: {user?.email}</p>
+                    </div>
+                    <button onClick={handleSignOut} className="SignOutButton">Logout</button>
+                </div>
             </div>
-                <button onClick={handleSignOut}>Logout</button>
         </div>
     )
 }
