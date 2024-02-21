@@ -22,7 +22,7 @@ const Account = () => {
             <Topbar />
             <div className='PositionBox'>
                 <div className='OrangeBox'>
-                    <h1 className='Profile'>Profile</h1>
+                    <h1 className='Profile'>Profile Details</h1>
                     <br />
                     <br />
                     <img src={user?.photoURL} className="UserPhoto" />

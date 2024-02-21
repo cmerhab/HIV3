@@ -2,7 +2,8 @@ import React, {useEffect} from "react";
 import { GoogleButton } from 'react-google-button';
 import {UserAuth} from '../context/AuthContext';
 import { useNavigate } from "react-router-dom";
-
+import ".././styles/SignIn.css"
+import Logo from ".././media/Hive Logo.png"
 
 const SignIn = () => {
 
@@ -25,12 +26,15 @@ const SignIn = () => {
    
 
     return (
-        <div>
-            <h1>Sign In</h1>
+    <div className = 'signinposition'>
+        <div className='signinbox'>
+            <h1>HIV3 Monitor</h1>
+            <img src={Logo} className="HiveLogo" alt="Hive Logo" />
             <div className='googlebutton'>
                 <GoogleButton onClick={handleGoogleSignIn} />
             </div>
         </div>
+    </div>
     )
 }
 export default SignIn;
