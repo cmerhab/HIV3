@@ -19,6 +19,7 @@
 .UserPhoto {
     border: 5px silver;
     border-style: solid;
+    border-radius: 20%;
 }
 
 .UserDetails {
