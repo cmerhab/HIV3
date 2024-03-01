@@ -8,7 +8,7 @@ const Topbar = () => {
     return (
     <div>
     <div class = "topbar-container">
-            <Link to =".././Home">
+            <Link to =".././">
                 <button class ="HomeButtonclick">
                     <img src={Home} className="homebutton" alt="homebutton" />
                 </button>
