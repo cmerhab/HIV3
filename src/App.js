@@ -10,6 +10,7 @@ import SignIn from './components/signin.js';
 import Profile from './pages/Profile.js';
 import { AuthContextProvider } from './context/AuthContext.js';
 import Protected from './components/protected.js';
+import Admin from './components/adminprotected.js';
 /*
 import Profile from './pages/Profile.js';
 import ModifyPermissions from './pages/ModifyPermissions.js';
@@ -32,9 +33,9 @@ function App() {
         <Route exact path='/' element={<Protected><Home /></Protected>} />
         <Route exact path = '/SignIn' element={<SignIn />} />
         <Route exact path = '/Profile' element={<Protected><Profile /></Protected>} />
-        <Route exact path='/LiveView' element={<Protected><LiveView/></Protected>}/>
-        <Route exact path='/ViewData' element={<Protected><ViewData/></Protected>}/>
-        <Route exact path='/ManageCamera' element={<Protected><ManageCamera/></Protected>}/>
+        <Route exact path='/LiveView' element={<Admin><Protected><LiveView/></Protected></Admin>}/>
+        <Route exact path='/ViewData' element={<Admin><Protected><ViewData/></Protected></Admin>}/>
+        <Route exact path='/ManageCamera' element={<Admin><Protected><ManageCamera/></Protected></Admin>}/>
       </Routes>
     </AuthContextProvider>  
     </div>
