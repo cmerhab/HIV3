@@ -5,12 +5,12 @@ import ".././styles/Account.css"
 import Topbar from "../components/topbar.js"
 import roles from '../context/roles.json'
 
-const Account = () => {
+const Account = ({setAdminPopup}) => {
 
     const {user, logOut } = UserAuth();
     const [condition, setCondition] = useState(false);
-    const current_user = user.uid;
-    const adminIDExists = roles.members.some(member=>member.userid == current_user);
+    const current_user = user.email;
+    const adminEmailExists = roles.members.some(member=>member.aemail == current_user);
 
     const handleSignOut = async () => {
         try {
@@ -36,7 +36,7 @@ const Account = () => {
                         <p>Welcome, {user?.displayName}</p> 
                         <p>Email: {user?.email}</p>
                     </div>
-                    {adminIDExists && <button>Admin Config</button>}
+                    {adminEmailExists && <button onClick={()=>setAdminPopup(true)}>Admin Config</button>} 
                     <button onClick={handleSignOut} className="SignOutButton">Logout</button>
                 </div>
             </div>
