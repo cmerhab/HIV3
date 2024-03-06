@@ -2,20 +2,10 @@ import React, {useState, useEffect} from 'react'
 import ".././styles/AdminPopup.css"
 import {Navigate} from 'react-router-dom'
 import {UserAuth} from '../context/AuthContext'
-import roles from '../context/roles.json'
+import currentroles from '../context/roles.json'
 
 const AdminPopup = ({setAdminPopup}) => {
-    const organizedData = {};
-    const role = roles.Role;
-
-    if(!organizedData[role]){
-        organizedData[role] = [];
-    }
-
-    roles.members.forEach(member => {
-        organizedData[role].push(member.aemail);
-    });
-
+    const roles = currentroles.Roles;
 
    return (
     <div className ="adminpopup">
@@ -25,15 +15,15 @@ const AdminPopup = ({setAdminPopup}) => {
             </div>
             <div className ="existing-role-section">
                 <h1>Existing Users</h1>
-                    <select multiple className="existinglist">
-                        {Object.keys(organizedData).map((role, index) => (
-                            <optgroup label ={`Role: ${role}`} key={index}> 
-                                {organizedData[role].map((email, index) => (
-                                    <option key = {index} value ={email} className="emails" disabled >{`Email: ${email}`}</option>
-                                ))}
-                            </optgroup>
-                        ))}
-                    </select>
+                <select multiple className="existinglist">
+                    {roles.map((rolesObj, index) => (
+                        <optgroup label={`Role: ${rolesObj.Role}`} key={index}>
+                            {rolesObj.members.map((member, index) => (
+                                <option key={index} disabled className="emails">{`Email: ${member.aemail}`}</option>
+                            ))}
+                        </optgroup>
+                    ))}
+                </select>
             </div>
             <div className="exitbutton">
                 <button onClick={()=>setAdminPopup(false)}> X </button>
