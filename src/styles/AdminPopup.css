@@ -1,17 +1,16 @@
 .adminpopup {
-    background-color:grey;
-    position: absolute;
-    top: 30%;
-    left: 25%;
-    width: 50%;
-    height: 55%;
-}
-
-.popupheader {
     display: flex;
+    background-color: White;
+    justify-content: center;
     flex-direction: column;
-    justify-content: space-between;
-    margin: 0rem 2rem;
     align-items: center;
+    width: 50vw;
+    height: 60vh;
+    border-radius: 25px;
+    border-style: solid;
+    border-color:  #CC8F00;
+    border-width: 10px;
+    position: absolute;
+    top: 24%;
+    left: 25%;
 }
-
