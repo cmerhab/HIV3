@@ -4,8 +4,8 @@
             "Role": "Owner",
             "members": [
               {
-                "aemail": "owneremail@example.com",
-                "userid": "UniqueUserIdForOwner"
+                "aemail": "identitypvp@gmail.com",
+                "userid": "RsywSpGOqDhZpIHwK4jb0GlmsMU2"
               }
     
             ]
@@ -14,14 +14,18 @@
         "Role": "Admin",
         "members": [
           {
-            "aemail": "identitypvp@gmail.com",
-            "userid": "RsywSpGOqDhZpIHwK4jb0GlmsMU2"
-          },
-          {
             "aemail": "connormerhab@gmail.com",
             "userid": "e6PJbozveZQVbgoWP3bcnoJZWEx1"
           }
         ]
+      },
+      {
+        "Role": "Guest",
+            "members": []
+      },
+      {
+        "Role": "Banned",
+            "members": []
       }
     ]
   }

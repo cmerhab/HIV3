@@ -10,8 +10,14 @@ const Account = ({setAdminPopup}) => {
     const {user, logOut } = UserAuth();
     const [condition, setCondition] = useState(false);
     const current_user = user.email;
+
+    //Testing for admin-level roles 
     const adminRole = roles.Roles.find(role => role.Role === "Admin");
     const adminEmailExists = adminRole.members.some(member => member.aemail === current_user);
+
+    const ownerRole = roles.Roles.find(role => role.Role === "Owner");
+    const ownerEmailExists = ownerRole.members.some(member => member.aemail === current_user);
+
 
     const handleSignOut = async () => {
         try {
@@ -37,7 +43,7 @@ const Account = ({setAdminPopup}) => {
                         <p>Welcome, {user?.displayName}</p> 
                         <p>Email: {user?.email}</p>
                     </div>
-                    {adminEmailExists && <button onClick={()=>setAdminPopup(true)}>Admin Config</button>} 
+                    {(adminEmailExists || ownerEmailExists) && <button onClick={()=>setAdminPopup(true)}>Admin Config</button>} 
                     <button onClick={handleSignOut} className="SignOutButton">Logout</button>
                 </div>
             </div>
