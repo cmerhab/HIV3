@@ -1,7 +1,7 @@
 .adminpopup {
     display: flex;
     background-color: White;
-    justify-content: center;
+    justify-content: stretch;
     flex-direction: column;
     width: 50vw;
     height: 60vh;
@@ -17,27 +17,31 @@
 .popupheader{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     
 }
 
-.exitbutton > button {
-    border-radius: 5px; /*change depending on end format*/
-    border-style: solid;
-    border-color:  #CC8F00;
-    border-width: 4px;
-    width: 3vw;
-    height: 5vh;
-    background-color: white;
-    color: #CC8F00;
-}
-
-
-.existing-role-section{
+.sub-section{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+/*Add Users CSS*/
+.Demote-Promote-Button 
+{
+    background-color:#CC8F00;
+    border-style: solid;
+    border-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 150%;
+    width: 8vw;
+    height: 5vh;
+
+}
+
+/*Existing Users CSS*/
 .existinglist {
     font-size: 15px;
     border-radius: 5px; 
@@ -49,3 +53,16 @@
 .emails {
     color: black;
 }
+
+/*EXIT CSS*/
+.exit-button-section  {
+    border-radius: 5px; /*change depending on end format*/
+    border-style: solid;
+    border-color:  #CC8F00;
+    border-width: 4px;
+    width: 3vw;
+    height: 5vh;
+    background-color: white;
+    color: #CC8F00;
+}
+

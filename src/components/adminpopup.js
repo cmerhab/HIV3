@@ -3,17 +3,34 @@ import ".././styles/AdminPopup.css"
 import {Navigate} from 'react-router-dom'
 import {UserAuth} from '../context/AuthContext'
 import currentroles from '../context/roles.json'
+import Demote from '../components/demoteuser';
+import Promote from '../components/promoteuser';
 
 const AdminPopup = ({setAdminPopup}) => {
     const roles = currentroles.Roles;
+    const [isPromoted, setIsPromoted] = useState(false); //Demote tab if false
+    const [buttonLabel, setButtonLabel] = useState('Demote');
 
+    const handleClick = () => {
+        setIsPromoted(!isPromoted); //Switches from false to true/vice versa
+
+        if(!isPromoted) {
+            setButtonLabel('Promote');
+        }
+        else
+        {
+            setButtonLabel('Demote');
+        }
+    };
    return (
     <div className ="adminpopup">
         <div className ="popupheader">
-            <div className = "addusersec">
+            <div className = "sub-section">
                 <h1>Add User</h1>
+                    <button onClick={handleClick} className="Demote-Promote-Button">{buttonLabel}</button>
+                    {isPromoted ? <Promote /> : <Demote />}
             </div>
-            <div className ="existing-role-section">
+            <div className ="sub-section">
                 <h1>Existing Users</h1>
                 <select multiple className="existinglist">
                     {roles.map((rolesObj, index) => (
@@ -25,8 +42,9 @@ const AdminPopup = ({setAdminPopup}) => {
                     ))}
                 </select>
             </div>
-            <div className="exitbutton">
-                <button onClick={()=>setAdminPopup(false)}> X </button>
+            <div className="sub-section">
+                <h1>Close</h1>
+                <button onClick={()=>setAdminPopup(false)} className="exit-button-section"> X </button>
             </div>
         </div>
     </div>
