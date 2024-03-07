@@ -22,7 +22,9 @@
     },
     {
       "Role": "Guest",
-      "members": [],
+      "members": [
+        {}
+      ],
       "id": "e024"
     },
     {

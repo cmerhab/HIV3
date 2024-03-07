@@ -15,10 +15,6 @@ const Home = () => {
     const {user} = UserAuth();
     const current_user = user.email;
     const current_user_id = user.uid;
-    const newGuest = {
-        "aemail": user.email,
-        "userid": user.uid
-    };
 
     /*Finding if user has a role*/
     const ownerRole = roles.Roles.find(role => role.Role === "Owner"); //Have to find the owner role
@@ -38,7 +34,13 @@ const Home = () => {
 
     /*Patch Request JSON Server*/ 
     const addMembertoGuest = () => { //This needs slight modification rn, just testing to see if it works.
-        if(!(ownerEmailExists || adminEmailExists || guestRoleExists || bannedRoleExists))
+        if((ownerEmailExists || adminEmailExists || guestRoleExists || bannedRoleExists))
+        {
+            console.log('Already a user');
+            return;
+        }
+        else
+        {
         fetch('http://localhost:3001/Roles?Role=Guest') 
             //fetch Roles if Role = guest
             .then(response => response.json())
@@ -61,6 +63,7 @@ const Home = () => {
                 }
             })
             .catch(err => console.error('Error fetching Guest role:', err));
+        }
     };
     /* End of Patch */
 
