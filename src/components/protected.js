@@ -1,12 +1,25 @@
 import React from 'react'
 import {Navigate} from 'react-router-dom'
 import {UserAuth} from '../context/AuthContext'
+import roles from '../context/roles.json'
 
 const Protected = ({children}) => {
-    const {user} = UserAuth();
+    const {user, logOut} = UserAuth();
+        
     if(!user) {
         return <Navigate to ='/signin' />;
     } 
+    const current_user = user.email;
+    const bannedRole = roles.Roles.find(role => role.Role === "Banned");
+    const bannedRoleExists = bannedRole.members.some(member =>member.aemail === current_user);
+    if(bannedRoleExists)
+    {
+        return [ 
+            <Navigate to='/signin' />,
+            logOut()
+        ];
+    }
+
     return children;
 };
 
