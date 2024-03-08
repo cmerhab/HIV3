@@ -2,11 +2,17 @@ import React, {useState, useEffect} from 'react'
 import {Navigate} from 'react-router-dom'
 import {UserAuth} from '../context/AuthContext'
 import ReactSearchBox from "react-search-box";
-
+import roles from '../context/roles.json'
+import DemoteAdmin from '../components/demoteadmin';
 const DemoteUser = () => {
     const [guestdata, setGuestData] = useState([]);
     const [guestselect, setGuestSelect] = useState();
     const [guestbutton, setGuestbutton] = useState(false);
+
+    const {user} = UserAuth();
+    const current_user = user.email;
+    const ownerRole = roles.Roles.find(role => role.Role === "Owner"); //Have to find the owner role
+    const ownerEmailExists = ownerRole.members.some(member => member.aemail === current_user); //Once owner role is found, find members in role
     const fetchGuestEmails = async () => {
         try {
             const response = await fetch('http://localhost:3001/Roles?Role=Guest');
@@ -87,8 +93,12 @@ const DemoteUser = () => {
                 <div className="demote">
                     <p>Ban {guestselect.item.value}?</p> 
                     <button onClick={handleBanUser}>Ban User</button>
+                    <button onClick={()=>setGuestbutton(false)}>No</button>
                 </div>
             )}
+            {ownerEmailExists && (
+                  <DemoteAdmin />
+            )}         
         </div>
     )
 };

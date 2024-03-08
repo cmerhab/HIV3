@@ -88,6 +88,7 @@ const PromoteUser = () => {
                 <div className="promote">
                     <p>Unban {bannedselect.item.value}?</p> 
                     <button onClick={handleUnbannedUser}>Unban User</button>
+                    <button onClick={()=>setBannedButton(false)}>No</button>
                 </div>
             )}
         </div>
