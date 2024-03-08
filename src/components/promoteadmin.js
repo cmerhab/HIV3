@@ -26,6 +26,44 @@ const PromoteAdmin = () => {
         }
     }
 
+    const handleGuestUser = async () => {
+        if(!guestselect)
+            return;
+        const userId = guestselect.item.key;
+        const userEmail = guestselect.item.value;
+
+        try {
+            //Fetching the Admin Role
+            const responseAdmin = await fetch('http://localhost:3001/Roles?Role=Admin');
+            const [adminRole] = await responseAdmin.json();
+            const updatedAdminMembers = [...adminRole.members, { "aemail": userEmail, "userid": userId}]; 
+
+             //Adding new Member to Admin Role
+             await fetch(`http://localhost:3001/Roles/${adminRole.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ members: updatedAdminMembers }),
+            });
+
+            //Fetching filtered guest list(without the one moved to guest)
+            const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
+            const [guestRole] = await responseGuest.json();
+            const filteredGuestMembers = guestRole.members.filter(member => member.userid !== userId);
+
+            //replacing old guest list with new guest list
+            await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ members: filteredGuestMembers }),
+            });
+            console.log(`${userEmail} Promoted.`)
+        } catch (error) {
+            console.error('Failed to promote user', error);
+        }
+
+        setGuestButton(false);
+    }
+
     const handleSelect = (record) => {
         console.log(record);
         setGuestSelect(record);
@@ -46,11 +84,14 @@ const PromoteAdmin = () => {
                 onSelect ={handleSelect}
             />
              {guestselect && guestbutton && (
-                <div className="promote">
-                    <p>Promote {guestselect.item.value}?</p> 
-                    <button>Promote User</button>
+                <div>
+                <div>
+                    <p>Guest to Admin</p>
+                    <button onClick={handleGuestUser}>Promote User</button>
                     <button onClick={()=>setGuestButton(false)}>No</button>
-                </div>
+                </div>   
+
+             </div>
             )}
         </div>
     )
