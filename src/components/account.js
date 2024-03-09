@@ -5,12 +5,19 @@ import ".././styles/Account.css"
 import Topbar from "../components/topbar.js"
 import roles from '../context/roles.json'
 
-const Account = () => {
+const Account = ({setAdminPopup}) => {
 
     const {user, logOut } = UserAuth();
     const [condition, setCondition] = useState(false);
-    const current_user = user.uid;
-    const adminIDExists = roles.members.some(member=>member.userid == current_user);
+    const current_user = user.email;
+
+    //Testing for admin-level roles 
+    const adminRole = roles.Roles.find(role => role.Role === "Admin");
+    const adminEmailExists = adminRole.members.some(member => member.aemail === current_user);
+
+    const ownerRole = roles.Roles.find(role => role.Role === "Owner");
+    const ownerEmailExists = ownerRole.members.some(member => member.aemail === current_user);
+
 
     const handleSignOut = async () => {
         try {
@@ -36,7 +43,7 @@ const Account = () => {
                         <p>Welcome, {user?.displayName}</p> 
                         <p>Email: {user?.email}</p>
                     </div>
-                    {adminIDExists && <button>Admin Config</button>}
+                    {(adminEmailExists || ownerEmailExists) && <button onClick={()=>setAdminPopup(true)}>Admin Config</button>} 
                     <button onClick={handleSignOut} className="SignOutButton">Logout</button>
                 </div>
             </div>

@@ -5,17 +5,21 @@ import roles from '../context/roles.json'
 
 const AdminProtected = ({children}) => {
     const {user} = UserAuth();
-    const current_user = user.uid;
-    console.log(current_user);
+    const current_user = user.email;
+    
+    //Testing user for every role
+    const adminRole = roles.Roles.find(role => role.Role === "Admin");
+    const adminEmailExists = adminRole.members.some(member => member.aemail === current_user);
+    
+    const ownerRole = roles.Roles.find(role => role.Role === "Owner"); //Have to find the owner role
+    const ownerEmailExists = ownerRole.members.some(member => member.aemail === current_user); //Once owner role is found, find members in role
 
-    const adminIDExists = roles.members.some(member=>member.userid == current_user);
-    console.log(adminIDExists);
+    console.log(adminEmailExists);
 
-    if(!adminIDExists)
+    if(!(adminEmailExists || ownerEmailExists))
     {
         return <Navigate to ='/' />
     }
-        
     return children
 };
 
