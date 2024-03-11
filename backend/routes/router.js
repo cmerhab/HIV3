@@ -2,6 +2,23 @@ const express = require('express')
 const router = express.Router()
 const RolesModel = require('../models/schemas')
 
+router.get('/rolelist', async (req, res) => {
+  try{
+    const rolesData = await RolesModel.find(); //Fetches everything
+
+    const list = rolesData.map(rl => ({
+      Roles: rl.Roles.map(role => ({
+        Role: role.Role,
+        Emails: role.members.map(member => member.aemail)
+      }))
+    }));
+
+    res.status(200).json(list);
+  } catch (error) {
+    console.error("Error fetching list:", error);
+    res.status(500).json({ message: 'An error occurred while fetching list'})
+  }
+});
 
 router.post('/members', async (req, res) => {
   const { roleId, aemail, userid } = req.body;

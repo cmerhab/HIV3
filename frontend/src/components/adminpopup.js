@@ -5,6 +5,7 @@ import {UserAuth} from '../context/AuthContext'
 import currentroles from '../context/roles.json'
 import Demote from '../components/demoteuser';
 import Promote from '../components/promoteuser';
+import List from '../components/listroles';
 
 const AdminPopup = ({setAdminPopup}) => {
     const roles = currentroles.Roles;
@@ -32,15 +33,7 @@ const AdminPopup = ({setAdminPopup}) => {
             </div>
             <div className ="sub-section">
                 <h1>Existing Users</h1>
-                <select multiple className="existinglist">
-                    {roles.map((rolesObj, index) => (
-                        <optgroup label={`Role: ${rolesObj.Role}`} key={index}>
-                            {rolesObj.members.map((member, index) => (
-                                <option key={index} disabled className="emails">{`Email: ${member.aemail}`}</option>
-                            ))}
-                        </optgroup>
-                    ))}
-                </select>
+                <List />
             </div>
             <div className="sub-section">
                 <h1>Close</h1>
