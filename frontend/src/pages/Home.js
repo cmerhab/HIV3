@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"; 
+import React, {useState, useEffect} from "react"; 
 import ".././styles/Home.css";
 import Topbar from "../components/topbar.js"
 import Clocktime from "../components/clock.js"
@@ -15,7 +15,6 @@ const Home = () => {
     const {user} = UserAuth();
     const current_user = user.email;
     const current_user_id = user.uid;
-
     /*Finding if user has a role*/
     /*End Of Finding if user has a role*/
     const checkMembersInRole = (role, userEmail)  => {
@@ -34,6 +33,7 @@ const Home = () => {
     }
 
     const fetchOwnerRole = async () => {
+        
         try {
             const isOwner = await checkMembersInRole('Owner', current_user);
             const isAdmin = await checkMembersInRole('Admin', current_user);
@@ -53,10 +53,15 @@ const Home = () => {
             }
              else {
                 console.log("The user is not any role yet")
+                assignUser();
             }
         } catch (error) {
             console.error("Error Fetching DA Role", error);
         }
+    }
+
+    const assignUser = () =>{
+       console.log("Unassigned User Detected.. Launching Function");
     }
     useEffect(() => {
         if(current_user) {
