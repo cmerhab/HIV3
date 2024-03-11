@@ -17,53 +17,43 @@ const PromoteUser = () => {
 
     const fetchBannedEmails = async () => {
         try {
-            const response = await fetch('http://localhost:3001/Roles?Role=Banned');
+            const response = await fetch('http://localhost:4000/fetchrole?roleName=Banned');
             const [bannedRole] = await response.json();
 
-            if(bannedRole && bannedRole.members)
+            if(bannedRole)
             {
-                const bannedEmails = bannedRole.members.map(member => ({
-                    key: member.userid,
-                    value: member.aemail,
+                const bannedEmails = bannedRole.Roles.map(member => ({
+                    key: member.Userid,
+                    value: member.Emails, //double check if this is fine with multiple in a list
                 }));
                 setBannedData(bannedEmails);
             }
         } catch (error) {
             console.error('Failed to fetch ban list', error);
         }
-    }
+    };
 
     const handleUnbannedUser = async () => {
         if(!bannedselect)
             return;
-        const userId = bannedselect.item.key;
-        const userEmail = bannedselect.item.value;
+        const ObjectId = bannedselect.item.key;
+        const ObjectEmail = bannedselect.item.value;
+
+        const userId = ObjectId[0];
+        const userEmail = ObjectEmail[0];
 
         try {
-            //Fetching the Guest Role
-            const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
-            const [guestRole] = await responseGuest.json();
-            const updatedGuestMembers = [...guestRole.members, { "aemail": userEmail, "userid": userId}]; 
-
-             //Adding new Member to Guest Role
-             await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
+            const response = await fetch('http://localhost:4000/unbanuser', {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: updatedGuestMembers }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId, userEmail }),
             });
 
-            //Fetching filtered banned list(without the one moved to banned)
-            const responseBanned = await fetch('http://localhost:3001/Roles?Role=Banned');
-            const [bannedRole] = await responseBanned.json();
-            const filteredBannedMembers = bannedRole.members.filter(member => member.userid !== userId);
+            const data = await response.json();
+            console.log(data.message);
 
-            //replacing old banned list with new banned list
-            await fetch(`http://localhost:3001/Roles/${bannedRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: filteredBannedMembers }),
-            });
-            console.log(`${userEmail} Unbanned.`)
         } catch (error) {
             console.error('Failed to unban user', error);
         }
@@ -106,3 +96,36 @@ const PromoteUser = () => {
 };
 
 export default PromoteUser;
+
+
+/* 
+
+        try {
+            //Fetching the Guest Role
+            const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
+            const [guestRole] = await responseGuest.json();
+            const updatedGuestMembers = [...guestRole.members, { "aemail": userEmail, "userid": userId}]; 
+
+             //Adding new Member to Guest Role
+             await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ members: updatedGuestMembers }),
+            });
+
+            //Fetching filtered banned list(without the one moved to banned)
+            const responseBanned = await fetch('http://localhost:3001/Roles?Role=Banned');
+            const [bannedRole] = await responseBanned.json();
+            const filteredBannedMembers = bannedRole.members.filter(member => member.userid !== userId);
+
+            //replacing old banned list with new banned list
+            await fetch(`http://localhost:3001/Roles/${bannedRole.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ members: filteredBannedMembers }),
+            });
+            console.log(`${userEmail} Unbanned.`)
+        } catch (error) {
+            console.error('Failed to unban user', error);
+        }
+*/
