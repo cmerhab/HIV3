@@ -2,6 +2,31 @@ const express = require('express')
 const router = express.Router()
 const RolesModel = require('../models/schemas')
 
+router.get('/fetchrole', async (req, res) => {
+  const roleName = req.query.roleName; //roleName typed into fetch URL
+
+  try {
+    const rolesData = await RolesModel.find({ "Roles.Role": roleName });
+
+    if(!rolesData) {
+      return res.status(404).json({ message: 'Role Not Found' });
+    }
+
+    const list = rolesData.map(rl => ({
+      Roles: rl.Roles.filter(role => role.Role === roleName).map(role=> ({
+        Role: role.Role,
+        Emails: role.members.map(member=>member.aemail),
+        Userid: role.members.map(member=>member.userid)
+      }))
+    }));
+
+    res.json(list);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An Error Occured' });
+  }
+})
+
 router.get('/rolelist', async (req, res) => {
   try{
     const rolesData = await RolesModel.find(); //Fetches everything

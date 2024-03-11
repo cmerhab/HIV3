@@ -9,20 +9,22 @@ const DemoteUser = () => {
     const [guestselect, setGuestSelect] = useState();
     const [guestbutton, setGuestbutton] = useState(false);
 
+    /*This will need to be replaced with functon I have in home.js*/
     const {user} = UserAuth();
     const current_user = user.email;
     const ownerRole = roles.Roles.find(role => role.Role === "Owner"); //Have to find the owner role
     const ownerEmailExists = ownerRole.members.some(member => member.aemail === current_user); //Once owner role is found, find members in role
+    
     const fetchGuestEmails = async () => {
         try {
-            const response = await fetch('http://localhost:3001/Roles?Role=Guest');
+            const response = await fetch('http://localhost:4000/fetchrole?roleName=Guest');
             const [guestRole] = await response.json();
 
-            if(guestRole && guestRole.members)
+            if(guestRole)
             {
-                const guestEmails = guestRole.members.map(member => ({
-                    key: member.userid,
-                    value: member.aemail,
+                const guestEmails = guestRole.Roles.map(member => ({
+                    key: member.Userid,
+                    value: member.Emails, //double check if this is fine with multiple in a list
                 }));
                 setGuestData(guestEmails);
             }
