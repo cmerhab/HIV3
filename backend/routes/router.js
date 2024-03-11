@@ -102,5 +102,46 @@ router.get('/findmember', async (req, res) => {
   }
 });
 
+router.patch('/banuser', async (req, res) => {
+  const { userId, userEmail } = req.body;
+
+  try{
+    const guestRole = await RolesModel.findOne({ "Roles.Role": "Guest" });
+  
+    if(!guestRole) {
+      return res.status(404).json({ message: "Guest Role not found"});
+    }
+    console.log(guestRole);
+
+    const guestRolesUpdate = guestRole.Roles.find(role=> role.Role === "Guest");
+    console.log(guestRolesUpdate);
+    const memberIndex = guestRolesUpdate.members.findIndex(member => member.userid === userId);
+    
+    
+    if(memberIndex === -1) {
+      return res.status(404).json({ message: "User not found in Guest Role" });
+    }
+
+    //Remove user from Guest Role
+    guestRolesUpdate.members.splice(memberIndex, 1);
+    await guestRole.save();
+
+    //Find banned role and add user to it 
+    const bannedRole = await RolesModel.findOne({ "Roles.Role": "Banned" });
+    if(!bannedRole) {
+      return res.status(404).json({message: "Banned Role not found"});
+    }
+
+    const bannedRoleToUpdate = bannedRole.Roles.find(role => role.Role === "Banned" );
+    bannedRoleToUpdate.members.push({ aemail: userEmail, userid: userId});
+    await bannedRole.save();
+
+    res.json({message: "User has been banned" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occrred while banning"})
+  }
+});
+
 
 module.exports = router

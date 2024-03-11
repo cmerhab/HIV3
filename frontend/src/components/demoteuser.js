@@ -42,37 +42,30 @@ const DemoteUser = () => {
     const handleBanUser = async () => {
         if(!guestselect)
             return;
-        const userId = guestselect.item.key;
-        const userEmail = guestselect.item.value;
+       const userIdobject = guestselect.item.key;
+        const Emailobject = guestselect.item.value;
+
+        const userEmail = Emailobject[0];
+        const userId = userIdobject[0];
+        
 
         try {
-            //Fetching the Banned Role
-            const responseBanned = await fetch('http://localhost:3001/Roles?Role=Banned');
-            const [bannedRole] = await responseBanned.json();
-            const updatedBannedMembers = [...bannedRole.members, { "aemail": userEmail, "userid": userId}]; 
-            
-            //Adding new Member to Banned Role
-            await fetch(`http://localhost:3001/Roles/${bannedRole.id}`, {
+            const response = await fetch('http://localhost:4000/banuser', {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: updatedBannedMembers }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId, userEmail }),
             });
 
-            //Fetching filtered guest list(without the one moved to banned)
-            const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
-            const [guestRole] = await responseGuest.json();
-            const filteredGuestMembers = guestRole.members.filter(member => member.userid !== userId);
+            const data = await response.json();
+            console.log(data.message);
 
-            await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: filteredGuestMembers }),
-            });
-            console.log(`${userEmail} Banned.`)
-        } catch (error)
-        {
+        } catch (error) {
             console.error('Failed to ban user', error);
         }
+
+     
         setGuestbutton(false);
     }
     useEffect(() => {
@@ -106,3 +99,33 @@ const DemoteUser = () => {
 };
 
 export default DemoteUser;
+
+
+/*    try {
+            //Fetching the Banned Role
+            const responseBanned = await fetch('http://localhost:3001/Roles?Role=Banned');
+            const [bannedRole] = await responseBanned.json();
+            const updatedBannedMembers = [...bannedRole.members, { "aemail": userEmail, "userid": userId}]; 
+            
+            //Adding new Member to Banned Role
+            await fetch(`http://localhost:3001/Roles/${bannedRole.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ members: updatedBannedMembers }),
+            });
+
+            //Fetching filtered guest list(without the one moved to banned)
+            const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
+            const [guestRole] = await responseGuest.json();
+            const filteredGuestMembers = guestRole.members.filter(member => member.userid !== userId);
+
+            await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ members: filteredGuestMembers }),
+            });
+            console.log(`${userEmail} Banned.`)
+        } catch (error)
+        {
+            console.error('Failed to ban user', error);
+        }*/
