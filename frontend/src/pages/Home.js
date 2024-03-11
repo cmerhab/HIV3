@@ -17,23 +17,45 @@ const Home = () => {
     const current_user_id = user.uid;
 
     /*Finding if user has a role*/
-    const ownerRole = roles.Roles.find(role => role.Role === "Owner"); //Have to find the owner role
-    const ownerEmailExists = ownerRole.members.some(member => member.aemail === current_user); //Once owner role is found, find members in role
-
-    const adminRole = roles.Roles.find(role => role.Role === "Admin");
-    const adminEmailExists = adminRole.members.some(member => member.aemail === current_user);
-
-    const guestRole = roles.Roles.find(role => role.Role === "Guest");
-    const guestRoleExists = guestRole.members.some(member =>member.aemail === current_user);
-
-    const bannedRole = roles.Roles.find(role => role.Role === "Banned");
-    const bannedRoleExists = bannedRole.members.some(member =>member.aemail === current_user);
     /*End Of Finding if user has a role*/
+    const checkMembersInRole = (role, userEmail)  => {
+        //console.log(role);
+        //console.log(userEmail);
+       return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
+            .then(response => response.json())
+            .then(data=> {
+                console.log(data.message);
+                return data.message.includes("Member exists in role");
+            })
+            .catch(error => {
+                console.error('Error', error);
+                return false;
+            });
+    }
+
+    const fetchOwnerRole = async () => {
+        try {
+            const isMember = await checkMembersInRole('Owner', current_user);
+            if(isMember) {
+                console.log("The user is a member of this role")
+            } else {
+                console.log("The user is not a member of this role")
+            }
+        } catch (error) {
+            console.error("Error Fetching DA Role", error);
+        }
+    }
+    useEffect(() => {
+        if(current_user) {
+            fetchOwnerRole();
+    }
+
+}, [current_user]);
 
 
 
     /*Patch Request JSON Server*/ 
-    const addMembertoGuest = () => { //This needs slight modification rn, just testing to see if it works.
+   /* const addMembertoGuest = () => { //This needs slight modification rn, just testing to see if it works.
         if((ownerEmailExists || adminEmailExists || guestRoleExists || bannedRoleExists))
         {
             console.log('Already a user');
@@ -64,13 +86,13 @@ const Home = () => {
             })
             .catch(err => console.error('Error fetching Guest role:', err));
         }
-    };
+    }; */
     /* End of Patch */
 
     /*PATCH request runs everytime page is ran*/
-    useEffect(() => {
+   /* useEffect(() => {
         addMembertoGuest();
-    });
+    });*/
 
     return (
         <div class="homepage">
