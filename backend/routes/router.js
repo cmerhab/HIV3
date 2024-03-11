@@ -11,18 +11,23 @@ router.post('/members', async (req, res) => {
     const role = await RolesModel.findOne({ "Roles.id": roleId });
 
     if(!role) {
-      return res.statis(404).send('Role not found');
+      return res.status(404).json({ message: 'Role id not found'});
     }
 
     const roleToUpdate = role.Roles.find(r=> r.id === roleId);
-    roleToUpdate.members.push({ aemail, userid});
 
+    const isMemberAlreadyHere = roleToUpdate.members.some(member=> member.aemail === aemail || member.userid === userid);
+    if(isMemberAlreadyHere) {
+      return res.status(409).json({message: 'Member Already exists in this role'});
+    }
+
+    roleToUpdate.members.push({ aemail, userid});
     await role.save();
 
-    res.status(201).send('Member addedd successfully');
+    res.status(201).json({ message: 'Member added successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).send('An Error Occurred')
+    res.status(500).json({ message: 'An Error Occurred'})
   }
 });
 
@@ -30,7 +35,7 @@ router.get('/findmember', async (req, res) => {
   const { current_user, role } = req.query;
 
   try {
-    console.log(`Role ${role}, Current User: ${current_user}`);
+  //  console.log(`Role ${role}, Current User: ${current_user}`);
     const roleWithMember = await RolesModel.findOne({
       "Roles": {
         "$elemMatch": {

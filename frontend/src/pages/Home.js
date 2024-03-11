@@ -32,6 +32,8 @@ const Home = () => {
             });
     }
 
+
+
     const fetchOwnerRole = async () => {
         
         try {
@@ -60,9 +62,31 @@ const Home = () => {
         }
     }
 
-    const assignUser = () =>{
+    const assignUser = async () =>{
        console.log("Unassigned User Detected.. Launching Function");
+        const roleId = "e024"; //RoleId = guest
+       const memberData = { aemail: current_user, userid: current_user_id, roleId: roleId};
+
+       try {
+            const response = await fetch('http://localhost:4000/members', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(memberData)
+            });
+            const responseBody = await response.text();
+            console.log('Raw Response', responseBody);
+
+            if(!response.ok) {
+                throw new Error('failed to add guest');
+            }
+
+            const data = JSON.parse(responseBody);
+            console.log('Member Added successfully', data);
+       } catch (error) {
+        console.error('Error adding member:', error)
+       }
     }
+
     useEffect(() => {
         if(current_user) {
             fetchOwnerRole();
@@ -70,47 +94,6 @@ const Home = () => {
 
 }, [current_user]);
 
-
-
-    /*Patch Request JSON Server*/ 
-   /* const addMembertoGuest = () => { //This needs slight modification rn, just testing to see if it works.
-        if((ownerEmailExists || adminEmailExists || guestRoleExists || bannedRoleExists))
-        {
-            console.log('Already a user');
-            return;
-        }
-        else
-        {
-        fetch('http://localhost:3001/Roles?Role=Guest') 
-            //fetch Roles if Role = guest
-            .then(response => response.json())
-            .then(data => {
-                if(data.length > 0) {
-                    const guestRole = data[0];
-                    const updatedMembers = [...guestRole.members, { "aemail": current_user, "userid": current_user_id}];
-
-                    //Update the guest role with new member
-                    fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json',  
-                        },
-                        body: JSON.stringify({ members: updatedMembers }),
-                    })
-                    .then(response => response.json())
-                    .then(json => console.log(json))
-                    .catch(err => console.error('Error', err))
-                }
-            })
-            .catch(err => console.error('Error fetching Guest role:', err));
-        }
-    }; */
-    /* End of Patch */
-
-    /*PATCH request runs everytime page is ran*/
-   /* useEffect(() => {
-        addMembertoGuest();
-    });*/
 
     return (
         <div class="homepage">
@@ -155,3 +138,5 @@ const Home = () => {
 
 };
 export default Home;
+
+

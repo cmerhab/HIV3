@@ -9,7 +9,7 @@ const memberSchema = new Schema ({
 const roleObject = new Schema({
     Role: { type: String},
     members: [memberSchema], 
-    id: { type: String} //May Remove
+    id: { type: String} 
 });
 
 const rolesSchema = new Schema({

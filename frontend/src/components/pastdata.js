@@ -4,9 +4,9 @@ import ".././styles/PastData.css";
 const PastData = () => {
 
     return (
-        <div class ="pastgrouped">
-            <h1 class="pasttitle">Past Data</h1>
-            <div class="pastbox">
+        <div className ="pastgrouped">
+            <h1 className="pasttitle">Past Data</h1>
+            <div className="pastbox">
             </div>
         </div>
     )

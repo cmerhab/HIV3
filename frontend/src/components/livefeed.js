@@ -3,9 +3,9 @@ import ".././styles/Livefeed.css";
 const LiveFeed = () => {
 
     return (
-        <div class ="grouped">
-            <h1 class="title">Live Feed</h1>
-            <div class="box"></div>
+        <div className ="grouped">
+            <h1 className="title">Live Feed</h1>
+            <div className="box"></div>
         </div>
     )
 }
