@@ -2,18 +2,15 @@ import React, {useState, useEffect} from 'react'
 import {Navigate} from 'react-router-dom'
 import {UserAuth} from '../context/AuthContext'
 import ReactSearchBox from "react-search-box";
-import roles from '../context/roles.json'
 import DemoteAdmin from '../components/demoteadmin';
 const DemoteUser = () => {
     const [guestdata, setGuestData] = useState([]);
     const [guestselect, setGuestSelect] = useState();
     const [guestbutton, setGuestbutton] = useState(false);
 
-    /*This will need to be replaced with functon I have in home.js*/
     const {user} = UserAuth();
     const current_user = user.email;
-    const ownerRole = roles.Roles.find(role => role.Role === "Owner"); //Have to find the owner role
-    const ownerEmailExists = ownerRole.members.some(member => member.aemail === current_user); //Once owner role is found, find members in role
+    const [isuserowner, setIsUserOwner] = useState(false);
     
     const fetchGuestEmails = async () => {
         try {
@@ -68,8 +65,43 @@ const DemoteUser = () => {
      
         setGuestbutton(false);
     }
+
+    const checkMembersInRole = (role, userEmail)  => {
+        //console.log(role);
+        //console.log(userEmail);
+       return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
+            .then(response => response.json())
+            .then(data=> {
+                console.log(data.message);
+                return data.message.includes("Member exists in role");
+            })
+            .catch(error => {
+                console.error('Error', error);
+                return false;
+            });
+    }
+
+    const fetchOwnerRole = async () => {
+        
+        try {
+            const isOwner = await checkMembersInRole('Owner', current_user);
+            if(isOwner) {
+                console.log("The user is a member of owner")
+                setIsUserOwner(true);
+            }
+            else {
+                console.log("The user is not any role yet")
+            }
+        } catch (error) {
+            console.error("Error Fetching DA Role", error);
+        }
+    }
+
+
+
     useEffect(() => {
         fetchGuestEmails();
+        fetchOwnerRole();
     }, [])
 
    
@@ -91,7 +123,7 @@ const DemoteUser = () => {
                     <button onClick={()=>setGuestbutton(false)}>No</button>
                 </div>
             )}
-            {ownerEmailExists && (
+            {isuserowner && (
                   <DemoteAdmin />
             )}         
         </div>
