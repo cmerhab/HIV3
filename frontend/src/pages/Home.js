@@ -35,11 +35,24 @@ const Home = () => {
 
     const fetchOwnerRole = async () => {
         try {
-            const isMember = await checkMembersInRole('Owner', current_user);
-            if(isMember) {
-                console.log("The user is a member of this role")
-            } else {
-                console.log("The user is not a member of this role")
+            const isOwner = await checkMembersInRole('Owner', current_user);
+            const isAdmin = await checkMembersInRole('Admin', current_user);
+            const isGuest = await checkMembersInRole('Guest', current_user);
+            const isBanned = await checkMembersInRole('Banned', current_user);
+            if(isOwner) {
+                console.log("The user is a member of owner")
+            }
+            else if(isAdmin){
+                console.log("The user is a member of admin")
+            }
+            else if(isGuest) {
+                console.log("The user is a member of guest")
+            }
+            else if(isBanned) {
+                console.log("The user is a member of banned")
+            }
+             else {
+                console.log("The user is not any role yet")
             }
         } catch (error) {
             console.error("Error Fetching DA Role", error);
