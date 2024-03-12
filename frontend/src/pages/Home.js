@@ -7,11 +7,12 @@ import Pastdata from "../components/pastdata.js"
 import CurrentCount from "../components/currentcount.js"
 import { Link } from "react-router-dom";
 import {UserAuth} from '../context/AuthContext'
+import {Navigate} from 'react-router-dom'
 
 
 
 const Home = () => {
-    const {user} = UserAuth();
+    const {user, logOut} = UserAuth();
     const current_user = user.email;
     const current_user_id = user.uid;
     /*Finding if user has a role*/
@@ -51,6 +52,10 @@ const Home = () => {
             }
             else if(isBanned) {
                 console.log("The user is a member of banned")
+                return [ 
+                <Navigate to='/signin' />,
+                logOut()
+                ];
             }
              else {
                 console.log("The user is not any role yet")
