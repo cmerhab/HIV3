@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"; 
+import React, {useEffect} from "react"; 
 import ".././styles/Home.css";
 import Topbar from "../components/topbar.js"
 import Clocktime from "../components/clock.js"
@@ -96,7 +96,7 @@ const Home = () => {
             fetchOwnerRole();
     }
 
-}, [current_user]);
+});
 
 
     return (

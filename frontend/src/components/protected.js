@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {Navigate} from 'react-router-dom'
 import {UserAuth} from '../context/AuthContext'
-import roles from '../context/roles.json'
 
 const Protected = ({children}) => {
-    const {user, logOut} = UserAuth();
+    const {user} = UserAuth();
         
     if(!user) {
         return <Navigate to ='/signin' />;

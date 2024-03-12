@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import roles from '../context/roles.json'
-import {UserAuth} from '../context/AuthContext'
 import ReactSearchBox from "react-search-box";
 const DemoteAdmin = () => {
     const [admindata, setAdminData] = useState([]);
@@ -43,7 +41,7 @@ const DemoteAdmin = () => {
             return;
         const userId = adminselect.item.key;
         const userEmail = adminselect.item.value;
-            if(flag==1)
+            if(flag===1)
             {
                 try {
                     const response = await fetch('http://localhost:4000/banadmin', {
@@ -61,7 +59,7 @@ const DemoteAdmin = () => {
                     console.error('Failed to ban admin', error);
                 }
             }
-            else if(flag == 0 )
+            else if(flag === 0 )
             {
                 try {
                     const response = await fetch('http://localhost:4000/demoteadmin', {

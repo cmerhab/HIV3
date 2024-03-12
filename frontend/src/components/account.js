@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react"; 
-import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 import ".././styles/Account.css"
 import Topbar from "../components/topbar.js"
-import roles from '../context/roles.json'
 
 const Account = ({setAdminPopup}) => {
 
@@ -52,7 +50,7 @@ const Account = ({setAdminPopup}) => {
     }
     useEffect(() => {
         fetchUpperRoles();
-    }, [])
+    })
 
     return (
    

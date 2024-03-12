@@ -1,14 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import ".././styles/AdminPopup.css"
-import {Navigate} from 'react-router-dom'
-import {UserAuth} from '../context/AuthContext'
-import currentroles from '../context/roles.json'
 import Demote from '../components/demoteuser';
 import Promote from '../components/promoteuser';
 import List from '../components/listroles';
 
 const AdminPopup = ({setAdminPopup}) => {
-    const roles = currentroles.Roles;
     const [isPromoted, setIsPromoted] = useState(false); //Demote tab if false
     const [buttonLabel, setButtonLabel] = useState('Demote');
 
