@@ -10,19 +10,29 @@ const PromoteAdmin = () => {
 
     const fetchGuestEmails = async () => {
         try {
-            const response = await fetch('http://localhost:3001/Roles?Role=Guest');
+            const response = await fetch('http://localhost:4000/fetchrole?roleName=Guest');
             const [guestRole] = await response.json();
 
-            if(guestRole && guestRole.members)
+            if(guestRole)
             {
-                const guestEmails = guestRole.members.map(member => ({
-                    key: member.userid,
-                    value: member.aemail,
-                }));
+                let guestEmails =[];
+                console.log(guestRole);
+                guestRole.Roles.forEach(member => {
+                    for(let i = 0; i< member.Emails.length; i++) {
+                        const email = member.Emails[i];
+                        const userid = member.Userid[i]; 
+                        guestEmails.push ({
+                            key: userid,
+                            value: email,
+                        });
+                    }
+                });
+                    
                 setGuestData(guestEmails);
+                console.log(guestEmails);
             }
         } catch (error) {
-            console.error('Failed to fetch guess list', error);
+            console.error('Failed to fetch guest list', error);
         }
     }
 
@@ -33,30 +43,17 @@ const PromoteAdmin = () => {
         const userEmail = guestselect.item.value;
 
         try {
-            //Fetching the Admin Role
-            const responseAdmin = await fetch('http://localhost:3001/Roles?Role=Admin');
-            const [adminRole] = await responseAdmin.json();
-            const updatedAdminMembers = [...adminRole.members, { "aemail": userEmail, "userid": userId}]; 
-
-             //Adding new Member to Admin Role
-             await fetch(`http://localhost:3001/Roles/${adminRole.id}`, {
+            const response = await fetch('http://localhost:4000/promoteuser', {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: updatedAdminMembers }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId, userEmail }),
             });
 
-            //Fetching filtered guest list(without the one moved to guest)
-            const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
-            const [guestRole] = await responseGuest.json();
-            const filteredGuestMembers = guestRole.members.filter(member => member.userid !== userId);
+            const data = await response.json();
+            console.log(data.message);
 
-            //replacing old guest list with new guest list
-            await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: filteredGuestMembers }),
-            });
-            console.log(`${userEmail} Promoted.`)
         } catch (error) {
             console.error('Failed to promote user', error);
         }

@@ -143,7 +143,6 @@ router.patch('/banuser', async (req, res) => {
   }
 });
 
-
 router.patch('/banadmin', async (req, res) => {
   const { userId, userEmail } = req.body;
 
@@ -261,6 +260,47 @@ router.patch('/unbanuser', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "An error occrred while banning"})
+  }
+});
+
+router.patch('/promoteuser', async (req, res) => {
+  const { userId, userEmail } = req.body;
+
+  try{
+    const guestRole = await RolesModel.findOne({ "Roles.Role": "Guest" });
+  
+    if(!guestRole) {
+      return res.status(404).json({ message: "Guest Role not found"});
+    }
+    console.log(guestRole);
+
+    const guestRolesUpdate = guestRole.Roles.find(role=> role.Role === "Guest");
+    console.log(guestRolesUpdate);
+    const memberIndex = guestRolesUpdate.members.findIndex(member => member.userid === userId);
+    
+    
+    if(memberIndex === -1) {
+      return res.status(404).json({ message: "User not found in Guest Role" });
+    }
+
+    //Remove user from Guest Role
+    guestRolesUpdate.members.splice(memberIndex, 1);
+    await guestRole.save();
+
+    //Find admin role and add user to it 
+    const adminRole = await RolesModel.findOne({ "Roles.Role": "Admin" });
+    if(!adminRole) {
+      return res.status(404).json({message: "Admin Role not found"});
+    }
+
+    const adminRoleToUpdate = adminRole.Roles.find(role => role.Role === "Admin" );
+    adminRoleToUpdate.members.push({ aemail: userEmail, userid: userId});
+    await adminRole.save();
+
+    res.json({message: "User has been promoted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occrred while promoting"})
   }
 });
 

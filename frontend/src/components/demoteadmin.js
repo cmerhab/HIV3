@@ -14,14 +14,21 @@ const DemoteAdmin = () => {
 
             if(adminRole)
             {
-                const adminEmails = adminRole.Roles.map(member => ({
-                    key: member.Userid,
-                    value: member.Emails, //double check if this is fine with multiple in a list
-                }));
+                let adminEmails =[];
+                adminRole.Roles.forEach(member => {
+                    for(let i = 0; i< member.Emails.length; i++) {
+                        const email = member.Emails[i];
+                        const userid = member.Userid[i]; 
+                        adminEmails.push ({
+                            key: userid,
+                            value: email,
+                        });
+                    }
+                });
                 setAdminData(adminEmails);
             }
         } catch (error) {
-            console.error('Failed to fetch guest list', error);
+            console.error('Failed to fetch admin list', error);
         }
     };
 
@@ -34,11 +41,8 @@ const DemoteAdmin = () => {
     const handleAdminUser = async (flag) => {
         if(!adminselect)
             return;
-        const objectId = adminselect.item.key;
-        const objectEmail = adminselect.item.value;
-
-        const userId = objectId[0];
-        const userEmail = objectEmail[0];
+        const userId = adminselect.item.key;
+        const userEmail = adminselect.item.value;
             if(flag==1)
             {
                 try {
