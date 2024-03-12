@@ -50,8 +50,7 @@ const Home = () => {
             else if(isGuest) {
                 console.log("The user is a member of guest")
             }
-            else if(isBanned) {
-                console.log("The user is a member of banned")
+            else if(isBanned) { //Will need to rethink this, banned user can escape by clicking other link fast
                 return [ 
                 <Navigate to='/signin' />,
                 logOut()

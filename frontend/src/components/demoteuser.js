@@ -15,11 +15,9 @@ const DemoteUser = () => {
         try {
             const response = await fetch('http://localhost:4000/fetchrole?roleName=Guest');
             const [guestRole] = await response.json();
-
             if(guestRole)
             {
                 let guestEmails =[];
-                console.log(guestRole);
                 guestRole.Roles.forEach(member => {
                     for(let i = 0; i< member.Emails.length; i++) {
                         const email = member.Emails[i];
@@ -40,7 +38,6 @@ const DemoteUser = () => {
     };
 
     const handleSelect = (record) => {
-        console.log(record);
         setGuestSelect(record);
         setGuestbutton(true);
     }
@@ -90,7 +87,6 @@ const DemoteUser = () => {
         try {
             const isOwner = await checkMembersInRole('Owner', current_user);
             if(isOwner) {
-                console.log("The user is a member of owner")
                 setIsUserOwner(true);
             }
             else {
@@ -137,31 +133,3 @@ const DemoteUser = () => {
 export default DemoteUser;
 
 
-/*    try {
-            //Fetching the Banned Role
-            const responseBanned = await fetch('http://localhost:3001/Roles?Role=Banned');
-            const [bannedRole] = await responseBanned.json();
-            const updatedBannedMembers = [...bannedRole.members, { "aemail": userEmail, "userid": userId}]; 
-            
-            //Adding new Member to Banned Role
-            await fetch(`http://localhost:3001/Roles/${bannedRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: updatedBannedMembers }),
-            });
-
-            //Fetching filtered guest list(without the one moved to banned)
-            const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
-            const [guestRole] = await responseGuest.json();
-            const filteredGuestMembers = guestRole.members.filter(member => member.userid !== userId);
-
-            await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: filteredGuestMembers }),
-            });
-            console.log(`${userEmail} Banned.`)
-        } catch (error)
-        {
-            console.error('Failed to ban user', error);
-        }*/

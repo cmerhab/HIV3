@@ -16,7 +16,6 @@ const PromoteAdmin = () => {
             if(guestRole)
             {
                 let guestEmails =[];
-                console.log(guestRole);
                 guestRole.Roles.forEach(member => {
                     for(let i = 0; i< member.Emails.length; i++) {
                         const email = member.Emails[i];
@@ -29,7 +28,6 @@ const PromoteAdmin = () => {
                 });
                     
                 setGuestData(guestEmails);
-                console.log(guestEmails);
             }
         } catch (error) {
             console.error('Failed to fetch guest list', error);
@@ -62,7 +60,6 @@ const PromoteAdmin = () => {
     }
 
     const handleSelect = (record) => {
-        console.log(record);
         setGuestSelect(record);
         setGuestButton(true);
     }

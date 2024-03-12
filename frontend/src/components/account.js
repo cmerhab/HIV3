@@ -27,10 +27,8 @@ const Account = ({setAdminPopup}) => {
             const isOwner = await checkMembersInRole('Owner', current_user);
             const isAdmin = await checkMembersInRole('Admin', current_user);
             if(isOwner) {
-                console.log("The user is a owner")
                 setUserIsOwner(true);
             } else if(isAdmin) {
-                console.log("The user is a admin")
                 setUserIsAdmin(true);
             }
             else {

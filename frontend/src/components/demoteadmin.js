@@ -31,7 +31,6 @@ const DemoteAdmin = () => {
     };
 
     const handleSelect = (record) => {
-        console.log(record);
         setAdminSelect(record);
         setAdminButton(true);
     }

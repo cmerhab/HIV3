@@ -65,14 +65,11 @@ const PromoteUser = () => {
     }
 
     const handleSelect = (record) => {
-        console.log(record);
         setBannedSelect(record);
         setBannedButton(true);
     }
 
     const checkMembersInRole = (role, userEmail)  => {
-        //console.log(role);
-        //console.log(userEmail);
        return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
             .then(response => response.json())
             .then(data=> {
@@ -90,7 +87,6 @@ const PromoteUser = () => {
         try {
             const isOwner = await checkMembersInRole('Owner', current_user);
             if(isOwner) {
-                console.log("The user is a member of owner")
                 setIsUserOwner(true);
             }
             else {
