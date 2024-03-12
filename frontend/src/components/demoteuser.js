@@ -74,8 +74,6 @@ const DemoteUser = () => {
     }
 
     const checkMembersInRole = (role, userEmail)  => {
-        //console.log(role);
-        //console.log(userEmail);
        return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
             .then(response => response.json())
             .then(data=> {
