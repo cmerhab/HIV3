@@ -25,12 +25,12 @@ const DemoteUser = () => {
                     for(let i = 0; i< member.Emails.length; i++) {
                         const email = member.Emails[i];
                         const userid = member.Userid[i]; 
-                    guestEmails.push ({
-                        key: userid,
-                        value: email,
-                    });
-                }
-            });
+                        guestEmails.push ({
+                            key: userid,
+                            value: email,
+                        });
+                    }
+                });
                     
                 setGuestData(guestEmails);
                 console.log(guestEmails);

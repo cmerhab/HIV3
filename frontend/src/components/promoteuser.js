@@ -20,10 +20,18 @@ const PromoteUser = () => {
 
             if(bannedRole)
             {
-                const bannedEmails = bannedRole.Roles.map(member => ({
-                    key: member.Userid,
-                    value: member.Emails, //double check if this is fine with multiple in a list
-                }));
+                let bannedEmails =[];
+
+                bannedRole.Roles.forEach(member => {
+                    for(let i = 0; i< member.Emails.length; i++) {
+                        const email = member.Emails[i];
+                        const userid = member.Userid[i]; 
+                        bannedEmails.push ({
+                            key: userid,
+                            value: email,
+                        });
+                    }
+                });
                 setBannedData(bannedEmails);
             }
         } catch (error) {
@@ -34,11 +42,8 @@ const PromoteUser = () => {
     const handleUnbannedUser = async () => {
         if(!bannedselect)
             return;
-        const ObjectId = bannedselect.item.key;
-        const ObjectEmail = bannedselect.item.value;
-
-        const userId = ObjectId[0];
-        const userEmail = ObjectEmail[0];
+        const userId = bannedselect.item.key;
+        const userEmail = bannedselect.item.value;
 
         try {
             const response = await fetch('http://localhost:4000/unbanuser', {
