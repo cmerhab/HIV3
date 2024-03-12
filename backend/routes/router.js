@@ -143,6 +143,88 @@ router.patch('/banuser', async (req, res) => {
   }
 });
 
+
+router.patch('/banadmin', async (req, res) => {
+  const { userId, userEmail } = req.body;
+
+  try{
+    const adminRole = await RolesModel.findOne({ "Roles.Role": "Admin" });
+  
+    if(!adminRole) {
+      return res.status(404).json({ message: "Admin Role not found"});
+    }
+    console.log(adminRole);
+
+    const adminRolesUpdate = adminRole.Roles.find(role=> role.Role === "Admin");
+    const memberIndex = adminRolesUpdate.members.findIndex(member => member.userid === userId);
+    
+    
+    if(memberIndex === -1) {
+      return res.status(404).json({ message: "User not found in Admin Role" });
+    }
+
+    //Remove user from Admin Role
+    adminRolesUpdate.members.splice(memberIndex, 1);
+    await adminRole.save();
+
+    //Find banned role and add user to it 
+    const bannedRole = await RolesModel.findOne({ "Roles.Role": "Banned" });
+    if(!bannedRole) {
+      return res.status(404).json({message: "Banned Role not found"});
+    }
+
+    const bannedRoleToUpdate = bannedRole.Roles.find(role => role.Role === "Banned" );
+    bannedRoleToUpdate.members.push({ aemail: userEmail, userid: userId});
+    await bannedRole.save();
+
+    res.json({message: "User has been banned" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occrred while banning"})
+  }
+});
+
+router.patch('/demoteadmin', async (req, res) => {
+  const { userId, userEmail } = req.body;
+
+  try{
+    const adminRole = await RolesModel.findOne({ "Roles.Role": "Admin" });
+  
+    if(!adminRole) {
+      return res.status(404).json({ message: "Admin Role not found"});
+    }
+    console.log(adminRole);
+
+    const adminRolesUpdate = adminRole.Roles.find(role=> role.Role === "Admin");
+    const memberIndex = adminRolesUpdate.members.findIndex(member => member.userid === userId);
+    
+    
+    if(memberIndex === -1) {
+      return res.status(404).json({ message: "User not found in Admin Role" });
+    }
+
+    //Remove user from Admin Role
+    adminRolesUpdate.members.splice(memberIndex, 1);
+    await adminRole.save();
+
+    //Find guest role and add user to it 
+    const guestRole = await RolesModel.findOne({ "Roles.Role": "Guest" });
+    if(!guestRole) {
+      return res.status(404).json({message: "Guest Role not found"});
+    }
+
+    const guestRoleToUpdate = guestRole.Roles.find(role => role.Role === "Guest" );
+    guestRoleToUpdate.members.push({ aemail: userEmail, userid: userId});
+    await guestRole.save();
+
+    res.json({message: "User has been demoted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occrred while demoting"})
+  }
+});
+
+
 router.patch('/unbanuser', async (req, res) => {
   const { userId, userEmail } = req.body;
 
@@ -181,6 +263,7 @@ router.patch('/unbanuser', async (req, res) => {
     res.status(500).json({ message: "An error occrred while banning"})
   }
 });
+
 
 
 

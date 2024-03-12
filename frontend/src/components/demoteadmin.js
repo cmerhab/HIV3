@@ -9,19 +9,19 @@ const DemoteAdmin = () => {
 
     const fetchAdminEmails = async () => {
         try {
-            const response = await fetch('http://localhost:3001/Roles?Role=Admin');
+            const response = await fetch('http://localhost:4000/fetchrole?roleName=Admin');
             const [adminRole] = await response.json();
 
-            if(adminRole && adminRole.members)
+            if(adminRole)
             {
-                const adminEmails = adminRole.members.map(member => ({
-                    key: member.userid,
-                    value: member.aemail,
+                const adminEmails = adminRole.Roles.map(member => ({
+                    key: member.Userid,
+                    value: member.Emails, //double check if this is fine with multiple in a list
                 }));
                 setAdminData(adminEmails);
             }
         } catch (error) {
-            console.error('Failed to fetch admin list', error);
+            console.error('Failed to fetch guest list', error);
         }
     };
 
@@ -34,51 +34,48 @@ const DemoteAdmin = () => {
     const handleAdminUser = async (flag) => {
         if(!adminselect)
             return;
-        const userId = adminselect.item.key;
-        const userEmail = adminselect.item.value;
-        try {
+        const objectId = adminselect.item.key;
+        const objectEmail = adminselect.item.value;
+
+        const userId = objectId[0];
+        const userEmail = objectEmail[0];
             if(flag==1)
             {
-            //Fetching the Banned Role
-            const responseBanned = await fetch('http://localhost:3001/Roles?Role=Banned');
-            const [bannedRole] = await responseBanned.json();
-            const updatedBannedMembers = [...bannedRole.members, { "aemail": userEmail, "userid": userId}]; 
-            
-            //Adding new Member to Banned Role
-            await fetch(`http://localhost:3001/Roles/${bannedRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: updatedBannedMembers }),
-            });
+                try {
+                    const response = await fetch('http://localhost:4000/banadmin', {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userId, userEmail }),
+                    });
+        
+                    const data = await response.json();
+                    console.log(data.message);
+        
+                } catch (error) {
+                    console.error('Failed to ban admin', error);
+                }
             }
             else if(flag == 0 )
             {
-                const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
-                const [guestRole] = await responseGuest.json();
-                const updatedGuestMembers = [...guestRole.members, { "aemail": userEmail, "userid": userId}]; 
-            
-                //Adding new Member to Guest Role
-                await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: updatedGuestMembers }),
-                });
+                try {
+                    const response = await fetch('http://localhost:4000/demoteadmin', {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userId, userEmail }),
+                    });
+        
+                    const data = await response.json();
+                    console.log(data.message);
+        
+                } catch (error) {
+                    console.error('Failed to demote admin', error);
+                }
             }
-            //Fetching filtered admin list(without the one moved to banned)
-            const responseAdmin = await fetch('http://localhost:3001/Roles?Role=Admin');
-            const [adminRole] = await responseAdmin.json();
-            const filteredAdminMembers = adminRole.members.filter(member => member.userid !== userId);
-
-            await fetch(`http://localhost:3001/Roles/${adminRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: filteredAdminMembers }),
-            });
-            console.log(`${userEmail} Banned.`)
-        } catch (error)
-        {
-            console.error('Failed to ban user', error);
-        }
+           
         setAdminButton(false);
     }
 
@@ -115,18 +112,3 @@ const DemoteAdmin = () => {
     )
 };
 export default DemoteAdmin;
-
-
-           /* {
-                 //Fetching the Guest Role
-                const responseGuest = await fetch('http://localhost:3001/Roles?Role=Guest');
-                const [guestRole] = await responseGuest.json();
-                const updatedGuestMembers = [...guestRole.members, { "aemail": userEmail, "userid": userId}]; 
-            
-                //Adding new Member to Guest Role
-                await fetch(`http://localhost:3001/Roles/${guestRole.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ members: updatedGuestMembers }),
-            });
-            } */

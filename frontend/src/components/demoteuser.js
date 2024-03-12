@@ -19,11 +19,21 @@ const DemoteUser = () => {
 
             if(guestRole)
             {
-                const guestEmails = guestRole.Roles.map(member => ({
-                    key: member.Userid,
-                    value: member.Emails, //double check if this is fine with multiple in a list
-                }));
+                let guestEmails =[];
+                console.log(guestRole);
+                guestRole.Roles.forEach(member => {
+                    for(let i = 0; i< member.Emails.length; i++) {
+                        const email = member.Emails[i];
+                        const userid = member.Userid[i]; 
+                    guestEmails.push ({
+                        key: userid,
+                        value: email,
+                    });
+                }
+            });
+                    
                 setGuestData(guestEmails);
+                console.log(guestEmails);
             }
         } catch (error) {
             console.error('Failed to fetch guest list', error);
@@ -39,11 +49,8 @@ const DemoteUser = () => {
     const handleBanUser = async () => {
         if(!guestselect)
             return;
-       const userIdobject = guestselect.item.key;
-        const Emailobject = guestselect.item.value;
-
-        const userEmail = Emailobject[0];
-        const userId = userIdobject[0];
+       const userId = guestselect.item.key;
+        const userEmail = guestselect.item.value;
         
 
         try {
