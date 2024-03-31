@@ -13,7 +13,7 @@ const DemoteUser = () => {
     
     const fetchGuestEmails = async () => {
         try {
-            const response = await fetch('http://localhost:4000/fetchrole?roleName=Guest');
+            const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/fetchrole?roleName=Guest');
             const [guestRole] = await response.json();
             if(guestRole)
             {
@@ -50,7 +50,7 @@ const DemoteUser = () => {
         
 
         try {
-            const response = await fetch('http://localhost:4000/banuser', {
+            const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/banuser', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const DemoteUser = () => {
     }
 
     const checkMembersInRole = (role, userEmail)  => {
-       return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
+       return fetch(`https://hiv3-app-1abe045e0a88.herokuapp.com/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
             .then(response => response.json())
             .then(data=> {
                 console.log(data.message);

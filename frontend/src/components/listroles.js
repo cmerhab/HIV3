@@ -5,7 +5,7 @@ const RoleList = () => {
 
 
     useEffect(() => { 
-        fetch('http://localhost:4000/rolelist')
+        fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/rolelist')
             .then(reponse=>reponse.json())
             .then(data=> {
                 console.log(data);
