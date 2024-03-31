@@ -15,7 +15,7 @@ const PromoteUser = () => {
 
     const fetchBannedEmails = async () => {
         try {
-            const response = await fetch('http://localhost:4000/fetchrole?roleName=Banned');
+            const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/fetchrole?roleName=Banned');
             const [bannedRole] = await response.json();
 
             if(bannedRole)
@@ -46,7 +46,7 @@ const PromoteUser = () => {
         const userEmail = bannedselect.item.value;
 
         try {
-            const response = await fetch('http://localhost:4000/unbanuser', {
+            const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/unbanuser', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const PromoteUser = () => {
     }
 
     const checkMembersInRole = (role, userEmail)  => {
-       return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
+       return fetch(`https://hiv3-app-1abe045e0a88.herokuapp.com/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
             .then(response => response.json())
             .then(data=> {
                 console.log(data.message);

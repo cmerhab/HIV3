@@ -10,7 +10,7 @@ const AdminProtected = ({children}) => {
     
     //Testing user for every role
     const checkMembersInRole = (role, userEmail)  => {
-        return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
+        return fetch(`https://hiv3-app-1abe045e0a88.herokuapp.com/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
              .then(response => response.json())
              .then(data=> {
                  console.log(data.message);

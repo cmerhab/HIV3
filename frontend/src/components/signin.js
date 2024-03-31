@@ -30,7 +30,7 @@ const SignIn = () => {
         <div className='leftside'>
             <div classname ="alltext">
                 <h1 className = 'headertext'>Welcome To The HIV3!</h1>
-                <p className = 'bodytext'>Description of Project</p>
+                <p className = 'bodytext'>Description of The Project</p>
             </div>
         </div>
 
