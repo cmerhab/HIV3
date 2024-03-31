@@ -33,9 +33,9 @@ function App() {
         <Route exact path='/' element={<Protected><Home /></Protected>} />
         <Route exact path = '/SignIn' element={<SignIn />} />
         <Route exact path = '/Profile' element={<Protected><Profile /></Protected>} />
-        <Route exact path='/LiveView' element={<Admin><Protected><LiveView/></Protected></Admin>}/>
-        <Route exact path='/ViewData' element={<Admin><Protected><ViewData/></Protected></Admin>}/>
-        <Route exact path='/ManageCamera' element={<Admin><Protected><ManageCamera/></Protected></Admin>}/>
+        <Route exact path='/LiveView' element={<Admin><LiveView/></Admin>}/>
+        <Route exact path='/ViewData' element={<Admin><ViewData/></Admin>}/>
+        <Route exact path='/ManageCamera' element={<Admin><ManageCamera/></Admin>}/>
       </Routes>
     </AuthContextProvider>  
     </div>
