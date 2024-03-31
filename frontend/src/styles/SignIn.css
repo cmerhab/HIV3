@@ -48,3 +48,11 @@
 .HiveLogo {
     height: 40vh;
 }
+
+.bottomtext {
+    width:60vw;
+}
+
+.bodytext {
+    font-size: 1.5vi;
+}
