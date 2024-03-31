@@ -5,7 +5,7 @@ const Currentcount = () => {
     return (
         <div class ="currentgrouped">
             <div class="currentbox">
-                <p className="currentp1">Count: </p>
+                <h1 className="currentp1">Count: </h1>
             </div>
         </div>
     )
