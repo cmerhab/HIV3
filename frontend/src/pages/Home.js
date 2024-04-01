@@ -101,10 +101,8 @@ const Home = () => {
     return (
         <div class="homepage">
             <Topbar />
-            <Livefeed/>
-            <CurrentCount />
-            <Pastdata />
-            <div className="left-box">
+            <div className="container">
+            <div className="firstCol">
                 <div className="camera-info">
                     <p1>Camera Name: </p1> 
                      <Clocktime />
@@ -132,7 +130,18 @@ const Home = () => {
                 </div>
     
             </div>
-   
+            <div className="secondCol">
+                <Livefeed/>
+                <CurrentCount/>
+            </div>
+            <div className="thirdCol">
+            </div>
+            <div className="fourthCol">
+            <Pastdata />
+            </div>
+            <div className="fifthCol">
+            </div>
+        </div>
 
         </div>
 

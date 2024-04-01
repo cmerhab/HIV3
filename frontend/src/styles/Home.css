@@ -2,15 +2,41 @@
 .center{
     align-items: center;
 }
+.container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-.left-box{
+.firstCol{
     display:block;
     background-color: #CC8F00;
     height:89vh;
-    width: 10vw;
+    width: 15vw;
+}
+.secondCol{
+    display:flex;
+    justify-content: space-between;
+    height:89vh;
+    width: 20vw;
+}
+.thirdCol{
+    display:flex;
+    height:89vh;
+    width: 20vw;
+}
+.fourthCol{
+    display:flex;
+    height:89vh;
+    width: 20vw;
+}
+.fifthCol{
+    display:flex;
+    height:89vh;
+    width: 20vw;
 }
 
-.left-box .camera-info{
+.firstCol .camera-info{
     background-color: silver;
     height:auto;    /*Increase or decreases dependent on whats inside it*/
     border-style: solid;
