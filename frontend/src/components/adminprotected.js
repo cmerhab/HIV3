@@ -5,12 +5,10 @@ import {UserAuth} from '../context/AuthContext'
 const AdminProtected = ({children}) => {
     const {user} = UserAuth();
     const current_user = user.email;
-    const [userisadmin, setUserIsAdmin] = useState(false);
-    const [userisowner, setUserIsOwner] = useState(false);
-    
-    //Testing user for every role
+    const [shouldRedirect, setShouldRedirect] = useState(false);
+
     const checkMembersInRole = (role, userEmail)  => {
-        return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
+        return fetch(`https://hiv3-app-1abe045e0a88.herokuapp.com/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
              .then(response => response.json())
              .then(data=> {
                  console.log(data.message);
@@ -21,19 +19,16 @@ const AdminProtected = ({children}) => {
                  return false;
              });
      }
+
      const fetchUpperRoles = async () => { 
         try {
-            const isOwner = await checkMembersInRole('Owner', current_user);
-            const isAdmin = await checkMembersInRole('Admin', current_user);
-            if(isOwner) {
-                console.log("The user is a owner")
-                setUserIsOwner(true);
-            } else if(isAdmin) {
-                console.log("The user is a admin")
-                setUserIsAdmin(true);
+            const isGuest = await checkMembersInRole('Guest', current_user);
+            if(isGuest) {
+                console.log("The user is a guest", current_user)
+                setShouldRedirect(true);
             }
             else {
-                console.log("The user is not upper role")
+                console.log("The user is upper role")
             }
         } catch (error) {
             console.error("Error Fetching DA Role", error);
@@ -41,11 +36,10 @@ const AdminProtected = ({children}) => {
     }
     useEffect(() => {
         fetchUpperRoles();
-    })
+    }, [current_user])
 
-    if(!(userisadmin || userisowner))
-    {
-        return <Navigate to ='/' />
+    if(shouldRedirect) {
+        return <Navigate to='/' />;
     }
     return children
 };

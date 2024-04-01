@@ -10,7 +10,7 @@ const PromoteAdmin = () => {
 
     const fetchGuestEmails = async () => {
         try {
-            const response = await fetch('http://localhost:4000/fetchrole?roleName=Guest');
+            const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/fetchrole?roleName=Guest');
             const [guestRole] = await response.json();
 
             if(guestRole)
@@ -41,7 +41,7 @@ const PromoteAdmin = () => {
         const userEmail = guestselect.item.value;
 
         try {
-            const response = await fetch('http://localhost:4000/promoteuser', {
+            const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/promoteuser', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ const DemoteAdmin = () => {
 
     const fetchAdminEmails = async () => {
         try {
-            const response = await fetch('http://localhost:4000/fetchrole?roleName=Admin');
+            const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/fetchrole?roleName=Admin');
             const [adminRole] = await response.json();
 
             if(adminRole)
@@ -43,7 +43,7 @@ const DemoteAdmin = () => {
             if(flag===1)
             {
                 try {
-                    const response = await fetch('http://localhost:4000/banadmin', {
+                    const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/banadmin', {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const DemoteAdmin = () => {
             else if(flag === 0 )
             {
                 try {
-                    const response = await fetch('http://localhost:4000/demoteadmin', {
+                    const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/demoteadmin', {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json',

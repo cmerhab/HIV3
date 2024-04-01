@@ -20,7 +20,7 @@ const Home = () => {
     const checkMembersInRole = (role, userEmail)  => {
         //console.log(role);
         //console.log(userEmail);
-       return fetch(`http://localhost:4000/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
+       return fetch(`https://hiv3-app-1abe045e0a88.herokuapp.com/findmember?role=${encodeURIComponent(role)}&current_user=${encodeURIComponent(userEmail)}`)
             .then(response => response.json())
             .then(data=> {
                 console.log(data.message);
@@ -71,7 +71,7 @@ const Home = () => {
        const memberData = { aemail: current_user, userid: current_user_id, roleId: roleId};
 
        try {
-            const response = await fetch('http://localhost:4000/members', {
+            const response = await fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/members', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(memberData)
