@@ -4,7 +4,7 @@
 }
 .container{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
 }
 
@@ -16,7 +16,8 @@
 }
 .secondCol{
     display:flex;
-    justify-content: space-between;
+    flex-direction:column;
+    justify-content: space-around;
     height:89vh;
     width: 20vw;
 }
