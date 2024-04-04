@@ -1,57 +1,40 @@
-.addCam{
-    position:absolute;
-    left: 20vw;
-    top: 25vh;
-    background-color: blue;
-    width:25vw;
-    height:25vh;
-    justify-content: center;
-    display: inline-block;
-    border-radius: 2rem;
+.container{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
 }
-.add{
-    position:absolute;
-    left:10vw;
-    top:10vh;
-    background-color: transparent;
-    border: none;
+.addCam{
+    display:block;
+    background-color: blue;
+    height:15vh;
+    width: 15vw;
+    border-radius: 2rem;
+    justify-content: center;
     text-align: center;
+}
+
+.space-btwn{
+    display:block;
+    background-color: white;
+    height:15vh;
+    width: 15vw;
+    border-radius:2rem;
 }
 .remCam{
-    position:absolute;
-    right: 20vw;
-    top: 25vh;
+    display:block;
     background-color: red;
-    width:25vw;
-    height:25vh;
+    height:15vh;
+    width: 15vw;
+    border-radius:2rem;
     justify-content: center;
-    display: inline-block;
-    border-radius: 2rem;
-}
-.rem{
-    position:absolute;
-    right:10vw;
-    top:10vh;
-    background-color: transparent;
-    border: none;
     text-align: center;
 }
-.modCam{
-    position:absolute;
-    right: 37vw;
-    top: 60vh;
-    background-color: yellow;
-    width:25vw;
-    height:25vh;
-    justify-content: center;
-    display: inline-block;
-    border-radius: 2rem;
-}
-.mod{
-    position:absolute;
-    right:10vw;
-    top:10vh;
-    background-color: transparent;
-    border: none;
-    text-align: center;
+
+.button {
+    background-color:transparent;
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+
 }
