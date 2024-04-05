@@ -2,15 +2,42 @@
 .center{
     align-items: center;
 }
+.container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
-.left-box{
+.firstCol{
     display:block;
     background-color: #CC8F00;
     height:89vh;
-    width: 10vw;
+    width: 15vw;
+}
+.secondCol{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-around;
+    height:89vh;
+    width: 20vw;
+}
+.thirdCol{
+    display:flex;
+    height:89vh;
+    width: 20vw;
+}
+.fourthCol{
+    display:flex;
+    height:89vh;
+    width: 20vw;
+}
+.fifthCol{
+    display:flex;
+    height:89vh;
+    width: 20vw;
 }
 
-.left-box .camera-info{
+.firstCol .camera-info{
     background-color: silver;
     height:auto;    /*Increase or decreases dependent on whats inside it*/
     border-style: solid;
@@ -20,7 +47,7 @@
     border-top:black;
 }
 
-.Manage_Camera{
+.firstCol .Manage_Camera{
     height:40px;
     border-style: solid;
     border-left: black;
@@ -30,7 +57,7 @@
     padding-top:1vh;
 }
 
-.Sidebar_Button {
+.firstCol .Sidebar_Button {
     font-size: 1.75vh;
     background: transparent;
     border: none; 
@@ -38,7 +65,18 @@
     width: 16vh;
 
 }
-.Modify_Perms{
+.firstCol .Modify_Perms{
+    height:4vh;
+    border-style: solid;
+    border-left: black;
+    border-right:black;
+    border-top:black;
+    text-align: center;
+    padding-top:1vh;
+    padding-bottom: 1vh;
+    
+}
+.firstCol .Live_View{
     height:4vh;
     border-style: solid;
     border-left: black;
@@ -47,16 +85,7 @@
     text-align: center;
     padding-top:1vh;
 }
-.Live_View{
-    height:4vh;
-    border-style: solid;
-    border-left: black;
-    border-right:black;
-    border-top:black;
-    text-align: center;
-    padding-top:1vh;
-}
-.View_Data{
+.firstCol .View_Data{
     height:4vh;
     border-style: solid;
     border-left: black;

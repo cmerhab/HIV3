@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"; 
+import React, {useEffect,useState} from "react"; 
 import ".././styles/Home.css";
 import Topbar from "../components/topbar.js"
 import Clocktime from "../components/clock.js"
@@ -8,6 +8,7 @@ import CurrentCount from "../components/currentcount.js"
 import { Link } from "react-router-dom";
 import {UserAuth} from '../context/AuthContext'
 import {Navigate} from 'react-router-dom'
+import Loading from '../components/loadingscreen.js';
 
 
 
@@ -15,6 +16,12 @@ const Home = () => {
     const {user, logOut} = UserAuth();
     const current_user = user.email;
     const current_user_id = user.uid;
+    const [temperature,SetTemp] = useState(0.0);
+    const [humidity,SetHumidity] = useState(0.0);
+    const [windspeed,SetWindSpeed] = useState(0.0);
+    const [isLoading, setIsLoading] = useState(true);
+
+
     /*Finding if user has a role*/
     /*End Of Finding if user has a role*/
     const checkMembersInRole = (role, userEmail)  => {
@@ -32,7 +39,11 @@ const Home = () => {
             });
     }
 
-
+    useEffect(()=> {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2500);    
+    }, []);
 
     const fetchOwnerRole = async () => {
         
@@ -64,6 +75,16 @@ const Home = () => {
             console.error("Error Fetching DA Role", error);
         }
     }
+    const Weather= async () => {
+        let url='https://api.openweathermap.org/data/2.5/weather?zip=95014,us&appid=733cc9a44ea1fb2deea063b934b579fd&units=imperial';
+        const response = await fetch(url);
+        const weather = await response.json();
+        console.log(weather);
+        SetTemp(weather.main.temp);
+        SetWindSpeed(weather.wind.speed);
+        SetHumidity(weather.main.humidity);
+        
+    };
 
     const assignUser = async () =>{
        console.log("Unassigned User Detected.. Launching Function");
@@ -95,29 +116,28 @@ const Home = () => {
             fetchOwnerRole();
     }
 
-});
+        Weather();
 
+});
+if(isLoading) {
+    return <Loading />;
+}
 
     return (
         <div class="homepage">
             <Topbar />
-            <Livefeed/>
-            <CurrentCount />
-            <Pastdata />
-            <div className="left-box">
+            <div className="container">
+            <div className="firstCol">
                 <div className="camera-info">
                     <p1>Camera Name: </p1> 
                      <Clocktime />
-                    <p1>Local Temperature: </p1>
+                     <p1>Temperature: {temperature}°F </p1>
+                     <p1>Humidity: {humidity} % <br/></p1>
+                     <p1>Wind Speed: {windspeed} mph</p1>
                 </div>
                 <div className ="Manage_Camera">
                     <button className ="Sidebar_Button">
                     <Link to='/ManageCamera' className="titles">Manage Camera</Link>
-                    </button>
-                </div>
-                <div class ="Modify_Perms">
-                    <button className="Sidebar_Button">
-                    <Link to='/ModifyPerms' className="titles">Modify Permissions</Link>
                     </button>
                 </div>
                 <div className ="Live_View">
@@ -132,7 +152,18 @@ const Home = () => {
                 </div>
     
             </div>
-   
+            <div className="secondCol">
+                <Livefeed/>
+                <CurrentCount/>
+            </div>
+            <div className="thirdCol">
+            </div>
+            <div className="fourthCol">
+            <Pastdata />
+            </div>
+            <div className="fifthCol">
+            </div>
+        </div>
 
         </div>
 
