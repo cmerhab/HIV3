@@ -8,6 +8,7 @@ import CurrentCount from "../components/currentcount.js"
 import { Link } from "react-router-dom";
 import {UserAuth} from '../context/AuthContext'
 import {Navigate} from 'react-router-dom'
+import Loading from '../components/loadingscreen.js';
 
 
 
@@ -18,6 +19,8 @@ const Home = () => {
     const [temperature,SetTemp] = useState(0.0);
     const [humidity,SetHumidity] = useState(0.0);
     const [windspeed,SetWindSpeed] = useState(0.0);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     /*Finding if user has a role*/
     /*End Of Finding if user has a role*/
@@ -36,7 +39,11 @@ const Home = () => {
             });
     }
 
-
+    useEffect(()=> {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2500);    
+    }, []);
 
     const fetchOwnerRole = async () => {
         
@@ -112,6 +119,9 @@ const Home = () => {
         Weather();
 
 });
+if(isLoading) {
+    return <Loading />;
+}
 
     return (
         <div class="homepage">
