@@ -121,7 +121,7 @@ const Home = () => {
                 <div className="camera-info">
                     <p1>Camera Name: </p1> 
                      <Clocktime />
-                     <p1>Temperature: {temperature}°F </p1>
+                     <p1>Temperature: {temperature}°F<br/> </p1>
                      <p1>Humidity: {humidity} % <br/></p1>
                      <p1>Wind Speed: {windspeed} mph</p1>
                 </div>

@@ -65,17 +65,7 @@
     width: 16vh;
 
 }
-.firstCol .Modify_Perms{
-    height:4vh;
-    border-style: solid;
-    border-left: black;
-    border-right:black;
-    border-top:black;
-    text-align: center;
-    padding-top:1vh;
-    padding-bottom: 1vh;
-    
-}
+
 .firstCol .Live_View{
     height:4vh;
     border-style: solid;

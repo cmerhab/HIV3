@@ -1,6 +1,9 @@
 import React from "react"; 
 import Topbar from "../components/topbar.js"
 import ".././styles/ManageCamera.css";
+import "../components/removecams.js";
+import { Link } from "react-router-dom";
+
 
 //import {useGoogleLogin} from "@react-oauth/google";
 
@@ -16,9 +19,11 @@ const ManageCamera = () => {
             <Topbar />
             <div class="contain">
             <div class="addCam">
-                <button class="add">
+                <Link to ='../SetUpCams'>
+                    <button class="add"> 
                         <p1>Add Camera</p1>
                 </button>
+                </Link>
             </div>
             <div class="space-btwn">
             </div>
