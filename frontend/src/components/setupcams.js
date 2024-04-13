@@ -1,5 +1,6 @@
 import Topbar from "./topbar.js"
 import { Component } from "react";
+import ".././styles/setupcams.css";
 class SetUpCams extends Component{
     //var cam_add=document.getElementById("search").val();
     constructor(props) {
@@ -25,6 +26,7 @@ class SetUpCams extends Component{
             <form>
                 <div class="page_container">
                     <Topbar/>
+                    
                     <div class="text_container">
                         <div className = "instructions">
                             <h1>Pre-required instructions</h1>
@@ -46,12 +48,43 @@ class SetUpCams extends Component{
                                 <li>Utilizing CameraWebServer example make sure the only uncommented version is the AI-Thinker </li>
                             </ol>
                         </div>
+                        <div class = "stack">
                         <div class = "u_input">
                             <h1>Enter the IP address here</h1>
                             <input value={this.state.address} onChange={this.handleChange} type="text" id="search" placeholder="0.0.0.0"/>
                             <button onClick={(e)=>this.handleSubmit(e)}>Confirm</button>
+                            <p1><br/>Cameras added will be displayed on the table and <br/>LiveViews available on the homepage</p1>
                         </div>
+                        <div class="table">
+                        <table>
+                            <tr>
+                            <th> Names</th>
+                            <th> IP Address</th>
+                            </tr>
+                            <tr>
+                                <th>Alpha</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>Bravo</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>Charlie</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>Delta</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>Echo</th>
+                                <th></th>
+                            </tr>
+                        </table>
                     </div>
+                    </div>
+                        </div>
                 </div>
             </form>
         );
