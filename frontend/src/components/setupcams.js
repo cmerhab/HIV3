@@ -3,20 +3,30 @@ import { Component } from "react";
 import ".././styles/setupcams.css";
 class SetUpCams extends Component{
     //var cam_add=document.getElementById("search").val();
-    constructor(props) {
-        super(props);
+    constructor(ops) {
+        super(ops);
         this.state ={
+            name:null,
             address:null
-        }
+        }  
         this.handleSubmit=this.handleSubmit.bind(this); 
       }
     handleChange=(e)=>{
-        this.setState({address:e.target.value});
+        switch(e.target.id){
+            case("name"):
+                this.setState({name:e.target.value});
+                break;
+            case("ip"):
+                this.setState({address:e.target.value});
+                break;
+        }
     }
     handleSubmit = async (e) => {
         e.preventDefault();
         this.setState(
             ()=>alert(
+            'Added Camera \n'+
+            'Name: '+ this.state.name+"\n"+
             'Ip Address: '+ this.state.address
             )
         );
@@ -50,8 +60,9 @@ class SetUpCams extends Component{
                         </div>
                         <div class = "stack">
                         <div class = "u_input">
-                            <h1>Enter the IP address here</h1>
-                            <input value={this.state.address} onChange={this.handleChange} type="text" id="search" placeholder="0.0.0.0"/>
+                            <h1>Enter the Name of your camera and IP address here</h1>
+                            <input value={this.state.name} onChange={this.handleChange} type="text" id="name" placeholder="Name"/>
+                            <input value={this.state.address} onChange={this.handleChange} type="text" id="ip" placeholder="0.0.0.0"/>
                             <button onClick={(e)=>this.handleSubmit(e)}>Confirm</button>
                             <p1><br/>Cameras added will be displayed on the table and <br/>LiveViews available on the homepage</p1>
                         </div>
