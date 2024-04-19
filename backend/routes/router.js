@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const RolesModel = require('../models/schemas')
+const CameraModel = require('../models/schemas')
 
 router.get('/fetchrole', async (req, res) => {
   const roleName = req.query.roleName; //roleName typed into fetch URL
@@ -304,6 +305,22 @@ router.patch('/promoteuser', async (req, res) => {
   }
 });
 
+
+router.get('/addresslist', async (req, res) => {
+  try{
+    const addressData = await CameraModel.find(); //Fetches everything
+
+    const list = addressData.map(i => ({
+        name: i.name,
+        Address: i.address
+    }));
+
+    res.status(200).json(list);
+  } catch (error) {
+    console.error("Error fetching list:", error);
+    res.status(500).json({ message: 'An error occurred while fetching list'})
+  }
+});
 
 
 

@@ -16,6 +16,17 @@ const rolesSchema = new Schema({
     Roles: [roleObject]
 });
 
+const groupSchema = new Schema ({
+    name: { type: String},
+    address: { type: String}
+});
+
+const cameraSchema = new Schema ({
+    Group: [groupSchema]
+});
+
 const RolesModel = mongoose.model('Role', rolesSchema, 'users');
+const CameraModel = mongoose.model('Group', cameraSchema, 'camera_addresses');
 
 module.exports = RolesModel;
+module.exports = CameraModel;
