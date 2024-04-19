@@ -28,7 +28,7 @@ class SetUpCams extends Component{
             name: this.state.name,
             address: this.state.address
         };
-        const url = "http://localhost:4000/addaddress";
+        const url = "https://hiv3-app-1abe045e0a88.herokuapp.com/addaddress";
         try {
             const response = await fetch(url, {
                 method: 'POST',
