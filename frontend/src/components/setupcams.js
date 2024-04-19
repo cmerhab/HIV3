@@ -1,6 +1,7 @@
 import Topbar from "./topbar.js"
 import { Component } from "react";
 import ".././styles/setupcams.css";
+import AddressList from "../components/addresslist.js"
 class SetUpCams extends Component{
     //var cam_add=document.getElementById("search").val();
     constructor(ops) {
@@ -87,33 +88,8 @@ class SetUpCams extends Component{
                             <p1><br/>Cameras added will be displayed on the table and <br/>LiveViews available on the homepage</p1>
                         </div>
                         <div class="table">
-                        <table>
-                            <tr>
-                            <th> Names</th>
-                            <th> IP Address</th>
-                            </tr>
-                            <tr>
-                                <th>Alpha</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Bravo</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Charlie</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Delta</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Echo</th>
-                                <th></th>
-                            </tr>
-                        </table>
-                    </div>
+                           <AddressList />
+                        </div>
                     </div>
                         </div>
                 </div>
