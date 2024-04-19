@@ -23,13 +23,33 @@ class SetUpCams extends Component{
     }
     handleSubmit = async (e) => {
         e.preventDefault();
-        this.setState(
-            ()=>alert(
-            'Added Camera \n'+
-            'Name: '+ this.state.name+"\n"+
-            'Ip Address: '+ this.state.address
-            )
-        );
+
+        const groupData = {
+            name: this.state.name,
+            address: this.state.address
+        };
+        const url = "http://localhost:4000/addaddress";
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(groupData)
+            });
+            if(response.ok) {
+                alert(
+                'Added Camera \n'+
+                'Name: '+ this.state.name+"\n"+
+                'Ip Address: '+ this.state.address
+                )    
+            } else {
+                alert('Failed to add address/name');
+            }
+        } catch (error) {
+            console.error('Failed to send data:', error);
+            alert('Failed to send data to server');
+        }
     }
     render(){
         return(

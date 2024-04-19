@@ -310,10 +310,10 @@ router.get('/addresslist', async (req, res) => {
   try{
     const addressData = await CameraModel.find(); //Fetches everything
 
-    const list = addressData.map(i => ({
-        name: i.name,
-        Address: i.address
-    }));
+    const list = addressData.flatMap(i => i.Group.map(group => ({
+      name: group.name,
+      Address: group.address
+    })));
 
     res.status(200).json(list);
   } catch (error) {
@@ -322,6 +322,38 @@ router.get('/addresslist', async (req, res) => {
   }
 });
 
+router.post('/addaddress', async (req, res) => {
+  const { name, address } = req.body;
+
+  if(!name || !address) {
+    return res.status(400).json({ message: 'Address and Name are both needed '});
+  }
+
+  try {
+    const camera = await CameraModel.findOne();
+
+    if(!camera) { //If we remove all ip address by accident
+      const newCamera = new CameraModel({
+        Group: [{ name, address }]
+      });
+      await newCamera.save();
+      return res.status(201).json({ message: 'Address/Name added successfully', group: newCamera});
+    }
+
+    const isGroupAlreadyHere = camera.Group.some(group => group.name === name && group.address === address);
+    if(isGroupAlreadyHere) {
+      return res.status(409).json({ message: 'Group already exists!' });
+    }
+
+    camera.Group.push({ name, address });
+    await camera.save();
+
+    res.status(201).json({ message: 'Group added successfully', group: camera});
+  } catch (error) {
+    console.error("Error adding group:", error);
+    res.status(500).json({ message: "An error Occured!"});
+  }
+});
 
 
 
