@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const RolesModel = require('../models/schemas')
-const CameraModel = require('../models/schemas')
+const { RolesModel, CameraModel } = require('../models/schemas')
 
 router.get('/fetchrole', async (req, res) => {
   const roleName = req.query.roleName; //roleName typed into fetch URL
