@@ -5,7 +5,7 @@ const AddressList = () => {
 
     useEffect(() => {
         // Update the URL as per your server configuration
-        fetch('http://localhost:4000/addresslist')
+        fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/addresslist')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
