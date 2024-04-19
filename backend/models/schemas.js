@@ -28,5 +28,5 @@ const cameraSchema = new Schema ({
 
 module.exports = {
     RolesModel: mongoose.model('Role', rolesSchema, 'users'),
-    CameraModel: mongoose.model('Group', cameraSchema, 'camera_address')
+    CameraModel: mongoose.model('Group', cameraSchema, 'camera_addresses')
 };
