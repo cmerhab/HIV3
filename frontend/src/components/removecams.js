@@ -1,6 +1,6 @@
 import Topbar from "./topbar.js"
 import { Component } from "react";
-import ".././styles/setupcams.css";
+import ".././styles/removecams.css";
 class SetUpCams extends Component{
     //var cam_add=document.getElementById("search").val();
     constructor(ops) {
