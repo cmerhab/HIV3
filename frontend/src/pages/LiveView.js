@@ -28,7 +28,6 @@ const LiveView = () => {
     return (
         <div class="liveview">
             <Topbar />
-            <Livefeed/>
             <div class="left-box">
                 <div class="camera-info">
                     <p1>Camera Name: </p1> 
@@ -37,6 +36,7 @@ const LiveView = () => {
                      <p1>Humidity: {humidity} % <br/></p1>
                      <p1>Wind Speed: {windspeed} mph</p1>
                 </div>
+                <Livefeed/>
             </div>
         </div>
 

@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import React, { useState, useEffect } from 'react';  
 import Stream from "./stream.js"
+import Select from "react-dropdown-select";
 
 function BrightnessControl(value) {
     const [brightness, setBrightness] = useState(0);
@@ -24,26 +25,27 @@ function LightControl(value) {
       fetch(url)
         .then(response => {
           if (!response.ok) {
-            throw new Error('Failed to adjust brightness');
+            throw new Error('Failed to adjust Light Module');
           }
         })
         .catch(error => {
-          console.error('Error adjusting brightness:', error);
+          console.error('Error adjusting Light Module:', error);
         });
 }
 function FrameControl(value){
-    const [light, setlight] = useState(0);
+    const [frame, setFrame] = useState(0);
     const url = `https://app.beehivemonitoringscu.lol/control?var=xclk&val=${value}`;
     fetch(url)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Failed to adjust brightness');
+          throw new Error('Failed to adjust Frame Rate');
         }
       })
       .catch(error => {
-        console.error('Error adjusting brightness:', error);
+        console.error('Error adjusting Frame Rate:', error);
       });
 }
+
 
 function LedText(value) {
     console.log("LED "+value)
@@ -60,6 +62,7 @@ function ClockText(value) {
     FrameControl(value)
     return `${value}`;
 }
+
 const marks = [
     {
       value: -2,
@@ -136,11 +139,66 @@ const marks = [
         label: '15',
     },  
   ]; 
+  const resolutions=[
+    {
+        value:11,
+        label:"HD (1280 x 720)"
+
+    },
+    {
+        value:10,
+        label:"XGA (1024 x 768)"
+    },
+    {
+        value:9,
+        label:"SVGA (800 x 600)"
+    },
+    {
+        value:8,
+        label:"VGA (640 x 480)"
+    },
+    {
+        value:7,
+        label:"HVGA (480 x 320)"
+    },
+    {
+        value:6,
+        label:"CIF (400 x 296)"
+    },
+    {
+        value:5,
+        label:"QVGA (320 x 240)"
+    },
+    {
+        value:3,
+        label:"HQVGA (240 x 176)"
+    },
+    {
+        value:1,
+        label:"QQVGA (160 x 120)"
+    },
+    {
+        value:0,
+        label:"THUMB (96 x 96)"
+    }
+];
 
 const LiveFeedpage = () => {
+    const HandleResolutionChange=(record) => {
+        console.log(record[0].value)
+        const url = `https://app.beehivemonitoringscu.lol/control?var=framesize&val=${record[0].value}`;
+        fetch(url)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to adjust resolution');
+            }
+          })
+          .catch(error => {
+            console.error('Error adjusting resolution:', error);
+          });
+    }
     return (
         <div class ="viewpoint">
-
             <h1 class="title">Live Feed</h1>
             <div class="bord">
                 <div class="stream">
@@ -193,6 +251,9 @@ const LiveFeedpage = () => {
                             color="secondary"
                         />
                     </Box>
+            </div>
+            <div class="Resolutions">
+                <Select options={resolutions}  onChange={(record) => {HandleResolutionChange(record)}} />
             </div>
         </div>
         

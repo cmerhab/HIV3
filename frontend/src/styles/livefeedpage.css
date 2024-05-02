@@ -12,7 +12,7 @@
 .bord{
     height: 60vh;
     width: 120vh;
-    border: 2px solid #000000;
+    border: 2px solid white;
 }
 .left-box .camera-info{
     background-color: silver;

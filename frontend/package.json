@@ -17,6 +17,7 @@
     "mongoose": "^8.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropdown-select": "^4.11.2",
     "react-google-button": "^0.7.2",
     "react-input-slider": "^6.0.1",
     "react-router-dom": "^6.22.1",
