@@ -8,7 +8,7 @@ import CurrentCount from "../components/currentcount.js"
 import { Link } from "react-router-dom";
 import {UserAuth} from '../context/AuthContext'
 import {Navigate} from 'react-router-dom'
-
+import Stream from "../components/stream.js";
 
 
 const Home = () => {
@@ -143,7 +143,7 @@ const Home = () => {
     
             </div>
             <div className="secondCol">
-                <Livefeed/>
+                <Stream/>
                 <CurrentCount/>
             </div>
             <div className="thirdCol">
