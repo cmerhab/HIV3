@@ -182,21 +182,21 @@ const marks = [
         label:"THUMB (96 x 96)"
     }
 ];
+const HandleResolutionChange=(record) => {
+    console.log(record[0].value)
+    const url = `https://app.beehivemonitoringscu.lol/control?var=framesize&val=${record[0].value}`;
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to adjust resolution');
+        }
+      })
+      .catch(error => {
+        console.error('Error adjusting resolution:', error);
+      });
+}
 
 const LiveFeedpage = () => {
-    const HandleResolutionChange=(record) => {
-        console.log(record[0].value)
-        const url = `https://app.beehivemonitoringscu.lol/control?var=framesize&val=${record[0].value}`;
-        fetch(url)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Failed to adjust resolution');
-            }
-          })
-          .catch(error => {
-            console.error('Error adjusting resolution:', error);
-          });
-    }
     return (
         <div class ="viewpoint">
             <h1 class="title">Live Feed</h1>
@@ -205,55 +205,58 @@ const LiveFeedpage = () => {
                     <Stream/>
                 </div>
             </div>
-            <div class="LED Box">
-                <p1>LED Intensity:</p1>
-                <Box sx={{ width: 300 }}>
-                    <Slider
-                        aria-label="LED Intensity"
-                        defaultValue={0}
-                        getAriaValueText={LedText}
-                        valueLabelDisplay="auto"
-                        shiftStep={1}
-                        step={1}
-                        min={0}
-                        max={100}
-                    />
-                </Box>
-            </div>
-            <div class="Brightness Box">
-                <p1>Brightness Settings:</p1>
-                <Box sx={{ width: 300 }}>
-                    <Slider
-                        aria-label="Custom marks"
-                        defaultValue={0}
-                        getAriaValueText={BrightnessText}
-                        step={1}
-                        valueLabelDisplay="auto"
-                        min={-2}
-                        max={2}
-                        marks={marks}
-                        color=""
-                    />
-                </Box>
-            </div>
-            <div class="ClockCycle">
-                <p1>Clock Cycle:</p1>
-                <Box sx={{ width: 300 }}>
+            <div class="settings">  
+                <div class="LED Box">
+                    <p1>LED Intensity:</p1>
+                    <Box sx={{ width: 300 }}>
                         <Slider
-                            aria-label="Custom marks"
-                            defaultValue={6}
-                            getAriaValueText={ClockText}
-                            step={1}
+                            aria-label="LED Intensity"
+                            defaultValue={0}
+                            getAriaValueText={LedText}
                             valueLabelDisplay="auto"
-                            min={3}
-                            max={15}
-                            marks={clockcycle}
-                            color="secondary"
+                            shiftStep={1}
+                            step={1}
+                            min={0}
+                            max={100}
                         />
                     </Box>
-            </div>
-            <div class="Resolutions">
-                <Select options={resolutions}  onChange={(record) => {HandleResolutionChange(record)}} />
+                </div>
+                <div class="Brightness Box">
+                    <p1>Brightness Settings:</p1>
+                    <Box sx={{ width: 300 }}>
+                        <Slider
+                            aria-label="Custom marks"
+                            defaultValue={0}
+                            getAriaValueText={BrightnessText}
+                            step={1}
+                            valueLabelDisplay="auto"
+                            min={-2}
+                            max={2}
+                            marks={marks}
+                            color=""
+                        />
+                    </Box>
+                </div>
+                <div class="ClockCycle">
+                    <p1>Clock Cycle:</p1>
+                    <Box sx={{ width: 300 }}>
+                            <Slider
+                                aria-label="Custom marks"
+                                defaultValue={6}
+                                getAriaValueText={ClockText}
+                                step={1}
+                                valueLabelDisplay="auto"
+                                min={3}
+                                max={15}
+                                marks={clockcycle}
+                                color="secondary"
+                            />
+                        </Box>
+                </div>
+                <div class="Resolutions">
+                    <p1>Resolutions:</p1>
+                    <Select options={resolutions}  onChange={(record) => {HandleResolutionChange(record)}} />
+                </div>
             </div>
         </div>
         

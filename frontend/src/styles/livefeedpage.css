@@ -1,19 +1,19 @@
 .viewpoint {
     position: absolute;
-    left: 40vh;
+    left: 20vw;
     top: 8vh;
 }
 
 .title {
     position: relative;
     top: 2vh;
+    left: 10vh
+}
+.stream{
+    position: absolute;
+    left:10vw;
 }
 
-.bord{
-    height: 60vh;
-    width: 120vh;
-    border: 2px solid white;
-}
 .left-box .camera-info{
     background-color: silver;
     height:auto;    /*Increase or decreases dependent on whats inside it*/
@@ -27,5 +27,12 @@
     display:block;
     background-color: #CC8F00;
     height:88vh;
-    width: 15vw;
+    width: 20vw;
+}
+
+.settings{
+    display:block;
+    position:absolute;
+    top:25vh;
+    left:-38vh;
 }
