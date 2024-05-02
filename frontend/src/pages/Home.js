@@ -69,7 +69,7 @@ const Home = () => {
         }
     }
     const Weather= async () => {
-        let url='https://api.openweathermap.org/data/2.5/weather?zip=95014,us&appid=733cc9a44ea1fb2deea063b934b579fd&units=imperial';
+        let url='https://api.openweathermap.org/data/2.5/weather?zip=95014,us&appid=74166fb98e202fe44601eb635826e2ac&units=imperial';
         const response = await fetch(url);
         const weather = await response.json();
         console.log(weather);

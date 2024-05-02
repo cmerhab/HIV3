@@ -28,9 +28,11 @@ const ManageCamera = () => {
             <div class="space-btwn">
             </div>
             <div class ="remCam">
-                <button class="rem">
-                    <p1>Remove Camera</p1>
-                </button>
+                <Link to ='../RemoveCams'>
+                    <button class="rem">
+                        <p1>Remove Camera</p1>
+                    </button>
+                </Link>
             </div>
             </div>
         </div>

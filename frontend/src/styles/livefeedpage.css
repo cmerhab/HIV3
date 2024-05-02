@@ -1,6 +1,6 @@
 .viewpoint {
     position: absolute;
-    left: 30vh;
+    left: 40vh;
     top: 8vh;
 }
 
@@ -13,4 +13,19 @@
     height: 60vh;
     width: 120vh;
     border: 2px solid #000000;
+}
+.left-box .camera-info{
+    background-color: silver;
+    height:auto;    /*Increase or decreases dependent on whats inside it*/
+    border-style: solid;
+    border-left: black;
+    font-size: 1.75vh;
+    border-right:black;
+    border-top:black;
+}
+.left-box{
+    display:block;
+    background-color: #CC8F00;
+    height:88vh;
+    width: 15vw;
 }

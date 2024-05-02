@@ -11,29 +11,29 @@
 .firstCol{
     display:block;
     background-color: #CC8F00;
-    height:89vh;
+    height:88vh;
     width: 15vw;
 }
 .secondCol{
     display:flex;
     flex-direction:column;
     justify-content: space-around;
-    height:89vh;
+    height:88vh;
     width: 20vw;
 }
 .thirdCol{
     display:flex;
-    height:89vh;
+    height:88vh;
     width: 20vw;
 }
 .fourthCol{
     display:flex;
-    height:89vh;
+    height:88vh;
     width: 20vw;
 }
 .fifthCol{
     display:flex;
-    height:89vh;
+    height:88vh;
     width: 20vw;
 }
 

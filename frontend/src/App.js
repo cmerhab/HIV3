@@ -12,6 +12,7 @@ import { AuthContextProvider } from './context/AuthContext.js';
 import Protected from './components/protected.js';
 import Admin from './components/adminprotected.js';
 import SetUpCams from './components/setupcams.js';
+import RemoveCams from './components/removecams.js';
 /*
 import Profile from './pages/Profile.js';
 import ModifyPermissions from './pages/ModifyPermissions.js';
@@ -38,6 +39,7 @@ function App() {
         <Route exact path='/ViewData' element={<Admin><ViewData/></Admin>}/>
         <Route exact path='/ManageCamera' element={<Admin><ManageCamera/></Admin>}/>
         <Route exact path='/SetUpCams' element={<Admin><SetUpCams/></Admin>}/>
+        <Route exact path='/RemoveCams' element={<Admin><RemoveCams/></Admin>}/>
       </Routes>
     </AuthContextProvider>  
     </div>

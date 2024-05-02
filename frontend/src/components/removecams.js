@@ -1,8 +1,8 @@
 import Topbar from "./topbar.js"
 import { Component } from "react";
 import ".././styles/removecams.css";
-import { Dropdown } from 'primereact/dropdown';
-class SetUpCams extends Component{
+
+class RemoveCams extends Component{
     //var cam_add=document.getElementById("search").val();
     constructor(ops) {
         super(ops);
@@ -50,10 +50,7 @@ class SetUpCams extends Component{
                         <div class = "stack">
                         <div class = "u_input">
                             <h1>Enter the Name of your camera and IP address here</h1>
-                            {/*<input value={this.state.name} onChange={this.handleChange} type="text" id="name" placeholder="Name"/>
-                            Options=cameras can be replaced with the list of camera names that are available to the user */}
-                            <Dropdown value={this.state.name} onChange={this.handleChange} options={cameras} optionLabel="name"  
-                             placeholder="Select a Camera Name" className="w-full md:w-14rem" />
+                            <input value={this.state.name} onChange={this.handleChange} type="text" id="name" placeholder="Name"/>                          
                             <button onClick={(e)=>this.handleSubmit(e)}>Confirm</button>
                             <p1><br/>Cameras removed will be reflected on the table and <br/>LiveViews available on the homepage</p1>
                         </div>
@@ -92,3 +89,4 @@ class SetUpCams extends Component{
         );
     }
 }
+export default RemoveCams
