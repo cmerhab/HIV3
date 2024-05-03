@@ -21,7 +21,6 @@ const ViewData = () => {
                     <div class="camera-info">
                         <p1>Camera Name: </p1> 
                         <Clocktime />
-                        <p1>Local Temperature: </p1>
                     </div>
                 </div>
                 <div class="image-container">
