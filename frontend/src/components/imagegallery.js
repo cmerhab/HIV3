@@ -3,9 +3,8 @@ import ".././styles/ImageGallery.css"
 
 function ImageGallery() {
     const [images, setImages] = useState([]);
-
     useEffect(() => {
-        fetch('http://localhost:4000/images')
+        fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/images')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
