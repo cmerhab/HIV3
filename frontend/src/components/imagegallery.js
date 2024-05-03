@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ".././styles/ImageGallery.css"
 
 function ImageGallery() {
     const [images, setImages] = useState([]);
@@ -28,11 +29,11 @@ function ImageGallery() {
     return (
         <div>
             <h1>Image Gallery</h1>
-            <div>
+            <div className = "container">
     {           images?.map((img, index) => (
-        <img key={index} src={img.data} alt={img.image_name} />
-    ))}
-</div>
+                    <img key={index} src={img.data} alt={img.image_name} />
+                ))}
+            </div>
         </div>
     );
 }
