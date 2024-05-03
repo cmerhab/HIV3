@@ -208,7 +208,7 @@ const LiveFeedpage = () => {
             <div class="settings">  
                 <div class="LED Box">
                     <p1>LED Intensity:</p1>
-                    <Box sx={{ width: 300 }}>
+                    <Box sx={{ width: 250 }}>
                         <Slider
                             aria-label="LED Intensity"
                             defaultValue={0}
@@ -223,7 +223,7 @@ const LiveFeedpage = () => {
                 </div>
                 <div class="Brightness Box">
                     <p1>Brightness Settings:</p1>
-                    <Box sx={{ width: 300 }}>
+                    <Box sx={{ width: 250 }}>
                         <Slider
                             aria-label="Custom marks"
                             defaultValue={0}
@@ -239,7 +239,7 @@ const LiveFeedpage = () => {
                 </div>
                 <div class="ClockCycle">
                     <p1>Clock Cycle:</p1>
-                    <Box sx={{ width: 300 }}>
+                    <Box sx={{ width: 250 }}>
                             <Slider
                                 aria-label="Custom marks"
                                 defaultValue={6}

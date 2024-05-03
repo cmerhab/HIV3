@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const RolesModel = require('../models/schemas')
+const { RolesModel, PhotoModel} = require('../models/schemas')
 
 router.get('/fetchrole', async (req, res) => {
   const roleName = req.query.roleName; //roleName typed into fetch URL
@@ -306,6 +306,17 @@ router.patch('/promoteuser', async (req, res) => {
 
 
 
-
+router.get('/images', async (req, res) => {
+  try {
+      const images = await PhotoModel.find().sort({_id: -1}).limit(1);
+      const imagesWithBase64 = images.map(img => ({
+          ...img._doc,
+          data: 'data:image/jpeg;base64,' + img.data.toString('base64')
+      }));
+      res.json(imagesWithBase64);
+  } catch (error) {
+      res.status(500).send(error);
+  }
+});
 
 module.exports = router

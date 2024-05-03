@@ -16,6 +16,13 @@ const rolesSchema = new Schema({
     Roles: [roleObject]
 });
 
-const RolesModel = mongoose.model('Role', rolesSchema, 'users');
+const ImageSchema = new mongoose.Schema({
+    image_name: String,
+    data: Buffer
+});
 
-module.exports = RolesModel;
+
+module.exports = {
+    RolesModel: mongoose.model('Role', rolesSchema, 'users'),
+    PhotoModel: mongoose.model('Image', ImageSchema, 'Photo_test')
+};
