@@ -30,7 +30,7 @@ function ImageGallery() {
             <h1>Image Gallery</h1>
             <div className = "containerrr">
     {           images?.map((img, index) => (
-                    <img key={index} src={img.data} alt={img.image_name} />
+                    <img key={index} src={img.data} alt={img.image_name} className ="galleryphoto" />
                 ))}
             </div>
         </div>
