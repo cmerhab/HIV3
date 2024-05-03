@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b41a5049.css",
+    "main.js": "/static/js/main.3caadd18.js",
+    "static/js/453.50afd722.chunk.js": "/static/js/453.50afd722.chunk.js",
+    "static/media/Hive Logo.png": "/static/media/Hive Logo.d5939359b55f2211e83f.png",
+    "index.html": "/index.html",
+    "main.b41a5049.css.map": "/static/css/main.b41a5049.css.map",
+    "main.3caadd18.js.map": "/static/js/main.3caadd18.js.map",
+    "453.50afd722.chunk.js.map": "/static/js/453.50afd722.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b41a5049.css",
+    "static/js/main.3caadd18.js"
+  ]
+}
