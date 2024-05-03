@@ -25,8 +25,14 @@ const cameraSchema = new Schema ({
     Group: [groupSchema]
 });
 
+const ImageSchema = new mongoose.Schema({
+    image_name: String,
+    data: Buffer
+});
+
 
 module.exports = {
     RolesModel: mongoose.model('Role', rolesSchema, 'users'),
-    CameraModel: mongoose.model('Group', cameraSchema, 'camera_addresses')
+    CameraModel: mongoose.model('Group', cameraSchema, 'camera_addresses'),
+    PhotoModel: mongoose.model('Image', ImageSchema, 'Photo_test')
 };
