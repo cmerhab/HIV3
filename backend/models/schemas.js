@@ -24,7 +24,11 @@ const ImageSchema = new mongoose.Schema({
 const MLResultSchema = new Schema({
     timestamp: { type: Date, default: Date.now },
     bee_in: Number,
-    bee_out: Number
+    bee_out: Number,
+    metadata: {
+        hive_id: { type: String, default: "default_hive" },
+        location: { type: String, default: "default_location" }
+    }
 });
 
 module.exports = {
