@@ -21,7 +21,7 @@ import {
 
 const PieChart = ({ beeIn, beeOut }) => {
     const data = {
-        labels: ['Bee In', 'Bee Out'],
+        labels: [`Bee In: ${beeIn}`, `Bee In: ${beeOut}`],
         datasets: [
             {
                 data: [beeIn, beeOut],

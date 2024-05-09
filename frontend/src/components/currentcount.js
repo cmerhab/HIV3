@@ -25,8 +25,7 @@ const Currentcount = () => {
     else
     {
         const last = mlresults[mlresults.length - 1]
-        const count = last.bee_in - last.bee_out; //Most Recent
-        content = <p>Current Count: {count} </p>;
+        content = <p>In: {last.bee_in} Out: {last.bee_out} </p>;
     }
 
     return (

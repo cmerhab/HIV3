@@ -30,7 +30,7 @@ const PastData = () => {
             <ul>
                 {recentResults.map((result, index) => (
                     <li key={index}>
-                        Bee Count: {result.bee_in - result.bee_out}
+                       In: {result.bee_in} Out: {result.bee_out}
                     </li>
                 ))}
             </ul>
