@@ -22,8 +22,9 @@ const ImageSchema = new mongoose.Schema({
 });
 
 const MLResultSchema = new Schema({
-    bee_in: {type: Number, required: true},
-    bee_out: {type: Number, required: true}
+    timestamp: { type: Date, default: Date.now },
+    bee_in: Number,
+    bee_out: Number
 });
 
 module.exports = {
