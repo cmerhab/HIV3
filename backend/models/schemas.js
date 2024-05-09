@@ -33,6 +33,6 @@ const MLResultSchema = new Schema({
 
 module.exports = {
     RolesModel: mongoose.model('Role', rolesSchema, 'users'),
-    PhotoModel: mongoose.model('Image', ImageSchema, 'Photo_test'),
+    PhotoModel: mongoose.model('Image', ImageSchema, 'PhotoGallery'),
     MLResultsModel: mongoose.model('MLResult', MLResultSchema, 'ML_Results')
 };
