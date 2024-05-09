@@ -1,6 +1,7 @@
 import Topbar from "./topbar.js"
 import { Component } from "react";
 import ".././styles/setupcams.css";
+import AddressList from "../components/addresslist.js"
 class SetUpCams extends Component{
     //var cam_add=document.getElementById("search").val();
     constructor(ops) {
@@ -23,14 +24,35 @@ class SetUpCams extends Component{
     }
     handleSubmit = async (e) => {
         e.preventDefault();
-        this.setState(
-            ()=>alert(
-            'Added Camera \n'+
-            'Name: '+ this.state.name+"\n"+
-            'Ip Address: '+ this.state.address
-            )
-        );
+
+        const groupData = {
+            name: this.state.name,
+            address: this.state.address
+        };
+        const url = "https://hiv3-app-1abe045e0a88.herokuapp.com/addaddress";
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(groupData)
+            });
+            if(response.ok) {
+                alert(
+                'Added Camera \n'+
+                'Name: '+ this.state.name+"\n"+
+                'Ip Address: '+ this.state.address
+                )    
+            } else {
+                alert('Failed to add address/name');
+            }
+        } catch (error) {
+            console.error('Failed to send data:', error);
+            alert('Failed to send data to server');
+        }
     }
+
     render(){
         return(
             <form>
@@ -67,32 +89,7 @@ class SetUpCams extends Component{
                             <p1><br/>Cameras added will be displayed on the table and <br/>LiveViews available on the homepage</p1>
                         </div>
                         <div class="table">
-                        <table>
-                            <tr>
-                            <th> Names</th>
-                            <th> IP Address</th>
-                            </tr>
-                            <tr>
-                                <th>Alpha</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Bravo</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Charlie</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Delta</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Echo</th>
-                                <th></th>
-                            </tr>
-                        </table>
+                        <AddressList />
                     </div>
                     </div>
                         </div>
