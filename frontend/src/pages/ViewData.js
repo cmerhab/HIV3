@@ -1,4 +1,4 @@
-import React from "react"; 
+import React, {useEffect,useState}  from "react"; 
 import Topbar from "../components/topbar.js"
 import Clocktime from "../components/clock.js"
 import Currentcount from "../components/currentcount.js";
@@ -7,12 +7,40 @@ import ImageGallery from"../components/imagegallery.js"
 //import {useGoogleLogin} from "@react-oauth/google";
 
 const ViewData = () => {
-/*    const googSignIn=useGoogleLogin({
-        onSuccess:(res)=>{
-            console.log("res",res);
-            alert("Login Successful");
-        },
-    });*/
+    const [mlresults, setMlResults] = useState([]);
+
+    const MLResults = async () => {
+        fetch('http://localhost:4000/ml_info')
+            .then(response => response.json())
+            .then(data => setMlResults(data))
+            .then(error => console.error('Error Fetching Data:', error));
+        }
+    useEffect(() => {
+        MLResults()
+    }, [])
+
+    let content;
+
+    if(mlresults === null) {
+        content = <p>Loading...</p>;
+    }
+    else if(mlresults.length === 0)
+    {
+        content = <p>No data avaliable.</p>;
+    }
+    else
+    {
+        const recentResults = mlresults.slice(-10).reverse();
+        content = (
+            <ul>
+                {recentResults.map((result, index) => (
+                    <li key={index}>
+                        Bee In: {result.bee_in} Bee Out: {result.bee_out}
+                    </li>
+                ))}
+            </ul>
+        );
+    }
     return (
         <div class="ViewData">
             <Topbar />
@@ -29,6 +57,7 @@ const ViewData = () => {
                 <div class = "data-container">
                     <div class="past-contain">
                         <h1> Past Container</h1>
+                        {content}
                     </div>
                     <div class="count-contain">
                         <Currentcount/>
