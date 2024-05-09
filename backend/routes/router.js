@@ -311,7 +311,7 @@ router.get('/images', async (req, res) => {
       const images = await PhotoModel.find().sort({_id: -1}).limit(18);
       const imagesWithBase64 = images.map(img => ({
           ...img._doc,
-          data: 'data:image/png;base64,' + img.data.toString('base64')
+          data: 'data:image/jpeg;base64,' + img.data.toString('base64')
       }));
       res.json(imagesWithBase64);
   } catch (error) {
