@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { RolesModel, PhotoModel, MLResultsModel} = require('../models/schemas')
+const { RolesModel, PhotoModel, MLResultsModel, CameraModel} = require('../models/schemas')
 
 router.get('/fetchrole', async (req, res) => {
   const roleName = req.query.roleName; //roleName typed into fetch URL
@@ -328,5 +328,55 @@ router.get('/ml_info', async (req, res) => {
     res.status(500).send(error)
   }
 });
+
+router.get('/addresslist', async (req, res) => {
+  try{
+    const addressData = await CameraModel.find(); //Fetches everything
+
+    const list = addressData.flatMap(i => i.Group.map(group => ({
+      name: group.name,
+      Address: group.address
+    })));
+
+    res.status(200).json(list);
+  } catch (error) {
+    console.error("Error fetching list:", error);
+    res.status(500).json({ message: 'An error occurred while fetching list'})
+  }
+});
+
+router.post('/addaddress', async (req, res) => {
+  const { name, address } = req.body;
+
+  if(!name || !address) {
+    return res.status(400).json({ message: 'Address and Name are both needed '});
+  }
+
+  try {
+    const camera = await CameraModel.findOne();
+
+    if(!camera) { //If we remove all ip address by accident
+      const newCamera = new CameraModel({
+        Group: [{ name, address }]
+      });
+      await newCamera.save();
+      return res.status(201).json({ message: 'Address/Name added successfully', group: newCamera});
+    }
+
+    const isGroupAlreadyHere = camera.Group.some(group => group.name === name && group.address === address);
+    if(isGroupAlreadyHere) {
+      return res.status(409).json({ message: 'Group already exists!' });
+    }
+
+    camera.Group.push({ name, address });
+    await camera.save();
+
+    res.status(201).json({ message: 'Group added successfully', group: camera});
+  } catch (error) {
+    console.error("Error adding group:", error);
+    res.status(500).json({ message: "An error Occured!"});
+  }
+});
+
 
 module.exports = router

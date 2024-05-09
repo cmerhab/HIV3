@@ -31,8 +31,18 @@ const MLResultSchema = new Schema({
     }
 });
 
+const groupSchema = new Schema ({
+    name: { type: String},
+    address: { type: String}
+});
+
+const cameraSchema = new Schema ({
+    Group: [groupSchema]
+});
+
 module.exports = {
     RolesModel: mongoose.model('Role', rolesSchema, 'users'),
     PhotoModel: mongoose.model('Image', ImageSchema, 'PhotoGallery'),
-    MLResultsModel: mongoose.model('MLResult', MLResultSchema, 'ML_Results')
+    MLResultsModel: mongoose.model('MLResult', MLResultSchema, 'ML_Results'),
+    CameraModel: mongoose.model('Group', cameraSchema, 'camera_addresses')
 };
