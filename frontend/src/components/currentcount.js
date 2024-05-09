@@ -15,16 +15,16 @@ const Currentcount = () => {
 
     let content;
 
-    if(mlresults == null) {
+    if(mlresults === null) {
         content = <p>Loading...</p>;
     }
-    else if(mlresults.length == 0)
+    else if(mlresults.length === 0)
     {
         content = <p>No data avaliable.</p>;
     }
     else
     {
-        const count = mlresults[0].bee_in - mlresults[0].bee_out; //Most Recent
+        const count = mlresults[9].bee_in - mlresults[9].bee_out; //Most Recent
         content = <p>Count: {count} </p>;
     }
 
