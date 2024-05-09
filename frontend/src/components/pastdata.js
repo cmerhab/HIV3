@@ -5,7 +5,7 @@ const PastData = () => {
     const [mlresults, setMlResults] = useState([]);
 
     const MLResults = async () => {
-        fetch('http://localhost:4000/ml_info')
+        fetch('https://hiv3-app-1abe045e0a88.herokuapp.com/ml_info')
             .then(response => response.json())
             .then(data => setMlResults(data))
             .then(error => console.error('Error Fetching Data:', error));
