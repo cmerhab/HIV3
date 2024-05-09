@@ -21,8 +21,13 @@ const ImageSchema = new mongoose.Schema({
     data: Buffer
 });
 
+const MLResultSchema = new Schema({
+    bee_in: {type: Number, required: true},
+    bee_out: {type: Number, required: true}
+});
 
 module.exports = {
     RolesModel: mongoose.model('Role', rolesSchema, 'users'),
-    PhotoModel: mongoose.model('Image', ImageSchema, 'Photo_test')
+    PhotoModel: mongoose.model('Image', ImageSchema, 'Photo_test'),
+    MLResultsModel: mongoose.model('MLResult', MLResultSchema, 'ML_Results')
 };

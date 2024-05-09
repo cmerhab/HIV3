@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { RolesModel, PhotoModel} = require('../models/schemas')
+const { RolesModel, PhotoModel, MLResultsModel} = require('../models/schemas')
 
 router.get('/fetchrole', async (req, res) => {
   const roleName = req.query.roleName; //roleName typed into fetch URL
@@ -316,6 +316,16 @@ router.get('/images', async (req, res) => {
       res.json(imagesWithBase64);
   } catch (error) {
       res.status(500).send(error);
+  }
+});
+
+
+router.get('/ml_info', async (req, res) => {
+  try {
+    const results = await MLResultsModel.find({});
+    res.json(results)
+  } catch (error) {
+    res.status(500).send(error)
   }
 });
 
