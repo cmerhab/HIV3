@@ -4,6 +4,7 @@ import Clocktime from "../components/clock.js"
 import Currentcount from "../components/currentcount.js";
 import ".././styles/pastdatapage.css";
 import ImageGallery from"../components/imagegallery.js"
+import PieChart from "../components/piechart.js";
 //import {useGoogleLogin} from "@react-oauth/google";
 
 const ViewData = () => {
@@ -30,16 +31,8 @@ const ViewData = () => {
     }
     else
     {
-        const recentResults = mlresults.slice(-10).reverse();
-        content = (
-            <ul>
-                {recentResults.map((result, index) => (
-                    <li key={index}>
-                        Bee In: {result.bee_in} Bee Out: {result.bee_out}
-                    </li>
-                ))}
-            </ul>
-        );
+        const last = mlresults[mlresults.length - 1]
+        content = <PieChart beeIn={last.bee_in} beeOut={last.bee_out} />;
     }
     return (
         <div class="ViewData">
