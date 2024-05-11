@@ -4,7 +4,7 @@ function Stream() {
   const [imageUrl, setImageUrl] = useState("");
   const fetchLiveFeed = () => {
 
-    setImageUrl("https://camera.beehivemonitoringscu.lol");
+    setImageUrl("https://cameras.beehivemonitoringscu.lol");
 
   };
 

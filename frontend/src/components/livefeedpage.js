@@ -7,7 +7,7 @@ import Select from "react-dropdown-select";
 
 function BrightnessControl(value) {
     const [brightness, setBrightness] = useState(0);
-      const url = `https://app.beehivemonitoringscu.lol/control?var=brightness&val=${value}`;
+      const url = `https://apps.beehivemonitoringscu.lol/control?var=brightness&val=${value}`;
   
       fetch(url)
         .then(response => {
@@ -21,7 +21,7 @@ function BrightnessControl(value) {
 }
 function LightControl(value) {
     const [light, setlight] = useState(0);
-      const url = `https://app.beehivemonitoringscu.lol/control?var=lamp&val=${value}`;
+      const url = `https://apps.beehivemonitoringscu.lol/control?var=lamp&val=${value}`;
       fetch(url)
         .then(response => {
           if (!response.ok) {
@@ -34,7 +34,7 @@ function LightControl(value) {
 }
 function FrameControl(value){
     const [frame, setFrame] = useState(0);
-    const url = `https://app.beehivemonitoringscu.lol/control?var=xclk&val=${value}`;
+    const url = `https://apps.beehivemonitoringscu.lol/control?var=xclk&val=${value}`;
     fetch(url)
       .then(response => {
         if (!response.ok) {
@@ -184,7 +184,7 @@ const marks = [
 ];
 const HandleResolutionChange=(record) => {
     console.log(record[0].value)
-    const url = `https://app.beehivemonitoringscu.lol/control?var=framesize&val=${record[0].value}`;
+    const url = `https://apps.beehivemonitoringscu.lol/control?var=framesize&val=${record[0].value}`;
     fetch(url)
       .then(response => {
         if (!response.ok) {
