@@ -32,7 +32,21 @@ const ViewData = () => {
     else
     {
         const last = mlresults[mlresults.length - 1]
-        content = <PieChart beeIn={last.bee_in} beeOut={last.bee_out} />;
+        let i = 0;
+        let total_bee_in = 0;
+        let total_bee_out = 0;
+        while(i<mlresults.length)
+        {
+            total_bee_in += mlresults[i].bee_in;
+            total_bee_out += mlresults[i].bee_out;
+            i+=1;
+        }
+        if(last.bee_in ===0 && last.bee_out === 0) //resets after an hour
+        {
+            total_bee_in = 0;
+            total_bee_out = 0;
+        }
+        content = <PieChart beeIn={total_bee_in} beeOut={total_bee_out} />;
     }
     return (
         <div class="ViewData">

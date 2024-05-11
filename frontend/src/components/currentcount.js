@@ -31,6 +31,7 @@ const Currentcount = () => {
     return (
         <div class ="currentgrouped">
             <div class="currentbox">
+                <h1>Most Recent:</h1>
                 <h1 className="currentp1">{content}</h1>
             </div>
         </div>

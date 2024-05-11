@@ -21,17 +21,17 @@ import {
 
 const PieChart = ({ beeIn, beeOut }) => {
     const data = {
-        labels: [`Bee In: ${beeIn}`, `Bee In: ${beeOut}`],
+        labels: [`Bee In: ${beeIn}`, `Bee Out: ${beeOut}`],
         datasets: [
             {
                 data: [beeIn, beeOut],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)'
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 99, 132, 0.6)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)'
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)'
                 ],
                 borderWidth: 1,
             },
